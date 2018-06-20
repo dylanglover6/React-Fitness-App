@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import NoMatch from "./pages/NoMatch";
-import Nav from "./components/Nav";
+import Navbar from "./components/Navbar";
 import ViewWorkouts from "./pages/ViewWorkouts";
 import StartWorkout from "./pages/StartWorkout";
 import NutritionDietPlan from "./pages/NutritionDietPlan";
@@ -11,7 +11,7 @@ import UserProfile from "./pages/UserProfile";
 const App = () => (
   <Router>
     <div>
-      <Nav />
+      <Navbar />
       <Switch>
         <Route exact path="/" component={ViewWorkouts} />
         <Route exact path="/login" component={Login} />
