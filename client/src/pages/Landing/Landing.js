@@ -1,16 +1,20 @@
-import React, { Component } from "react";
-import { Col, Row, Container } from "../../components/Grid";
+import { Container } from "../../components/Grid";
+import React from 'react';
+import SignInForm from '../../components/User/SignIn';
+import SignUpForm from '../../components/User/SignUp';
 
-
-class Login extends Component {
-  
-  render() {
-    return (
-      <Container fluid>
-        
-      </Container>
-    );
-  }
-}
-
-export default Login;
+const LandingPage = ({history}) =>
+  <Container fluid>
+    <div>
+      <div>
+        <h1>Landing Page</h1>
+      </div>
+      <div>
+        <SignInForm history={history} />
+      </div>
+      <div>
+        <SignUpForm history={history} />
+      </div>
+    </div>
+  </Container>
+export default LandingPage;
