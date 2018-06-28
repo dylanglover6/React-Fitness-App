@@ -8,6 +8,7 @@ import NutritionDietPlan from "./pages/NutritionDietPlan";
 import Login from "./pages/Login";
 import UserProfile from "./pages/UserProfile";
 
+
 const App = () => (
   <Router>
     <div>
