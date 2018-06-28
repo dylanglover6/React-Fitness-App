@@ -2,12 +2,12 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 
 const config = {
-  apiKey: "AIzaSyAyLwIFM8dXQgvraDhugWbuTLlk4uuYlCo",
-  authDomain: "example-auth-react-7c3c5.firebaseapp.com",
-  databaseURL: "https://example-auth-react-7c3c5.firebaseio.com",
-  projectId: "example-auth-react-7c3c5",
-  storageBucket: "example-auth-react-7c3c5.appspot.com",
-  messagingSenderId: "452331052056"
+  apiKey: "AIzaSyCm4iF_jT3MdNLb8L3LZMbpPXHvQS1boH4",
+  authDomain: "react-fitness-app.firebaseapp.com",
+  databaseURL: "https://react-fitness-app.firebaseio.com",
+  projectId: "react-fitness-app",
+  storageBucket: "react-fitness-app.appspot.com",
+  messagingSenderId: "294945627954"
 };
 
 // Initialize Firebase
