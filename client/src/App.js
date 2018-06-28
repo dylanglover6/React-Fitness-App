@@ -21,7 +21,6 @@ const App = () => (
   <Router>
     <div>
       <Navbar />
-      <Navigation />
       
         {/* <Route exact path="/" component={ViewWorkouts} />
         <Route exact path="/profile" component={UserProfile} />
