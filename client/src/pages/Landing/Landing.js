@@ -1,20 +1,27 @@
-import { Container } from "../../components/Grid";
+import { Col, Row, Container } from "../../components/Grid";
 import React from 'react';
 import SignInForm from '../../components/User/SignIn';
 import SignUpForm from '../../components/User/SignUp';
+import Jumbotron from "../../components/Jumbotron";
+import './Landing.css';
 
 const LandingPage = ({history}) =>
-  <Container fluid>
-    <div>
+  <Jumbotron>
+    <Container fluid>
       <div>
-        <h1>Landing Page</h1>
+        <Row>
+          <Col size="md-6 sm-12">
+          
+            <SignInForm history={history} />
+          
+          </Col>
+          <Col size="md-6 sm-12">
+            
+            <SignUpForm history={history} />
+          
+          </Col>
+        </Row>
       </div>
-      <div>
-        <SignInForm history={history} />
-      </div>
-      <div>
-        <SignUpForm history={history} />
-      </div>
-    </div>
-  </Container>
+    </Container>
+  </Jumbotron>
 export default LandingPage;

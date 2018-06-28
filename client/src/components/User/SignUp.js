@@ -50,7 +50,7 @@ class SignUpForm extends Component {
       .then(authUser => {
         this.setState(() => ({ ...INITIAL_STATE }));
         history.push(routes.HOME);
-      })
+      }).then(console.log(username))
       .catch(error => {
         this.setState(byPropKey('error', error));
       });
@@ -80,7 +80,7 @@ class SignUpForm extends Component {
           value={username}
           onChange={event => this.setState(byPropKey('username', event.target.value))}
           type="text"
-          placeholder="Full Name"
+          placeholder="Username"
         />
         <input
           value={email}
