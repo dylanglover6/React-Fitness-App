@@ -9,4 +9,5 @@ export const VIEW_WORKOUTS = '/view-workouts';
 export const FAVORITE_WORKOUTS = '/favorites';
 export const USER_STATS = '/user-stats';
 export const USER_HISTORY = '/user-history';
+export const USER_PROFILE = '/user-profile';
 export const NO_MATCH = '/noMatch';

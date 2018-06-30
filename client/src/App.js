@@ -12,8 +12,9 @@ import HomePage from './pages/Home/Home';
 import AccountPage from './components/User/Account';
 import * as routes from './constants/routes';
 import withAuthentication from './components/User/withAuthentication';
-import FavoritesList from './components/UserComponents/FavoritesList';
-
+import Favorites from './pages/Favorites/Favorites';
+import UserProfile from './pages/UserProfile';
+import UserHistory from './pages/UserHistory';
 
 
 const App = () => (
@@ -22,7 +23,9 @@ const App = () => (
       <Navbar />
         <Route exact path={routes.START_WORKOUT} component={() => <StartWorkout />} />
         <Route exact path={routes.VIEW_WORKOUTS} component={() => <ViewWorkouts />} />
-        <Route exact path={routes.FAVORITE_WORKOUTS} component={() => <FavoritesList />} />
+        <Route exact path={routes.FAVORITE_WORKOUTS} component={() => <Favorites />} />
+        <Route exact path={routes.USER_PROFILE} component={() => <UserProfile />} />
+        <Route exact path={routes.USER_HISTORY} component={() => <UserHistory />} />
         <Route exact path={routes.NO_MATCH} component ={() => <NoMatch />} />
 
         {/* Firebase User Auth Routes start here.  */}
