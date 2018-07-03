@@ -39,13 +39,6 @@ class SignUpForm extends Component {
       history, 
     } = this.props;
 
-    // Start: To save user's email to mongodb
-    // API.saveUser({
-    //   email: email
-    // }).then(console.log(email))
-    // .catch(err => console.log(err));
-    // End: To save user's email to mongodb
-
     auth.doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
         this.setState(() => ({ ...INITIAL_STATE }));
