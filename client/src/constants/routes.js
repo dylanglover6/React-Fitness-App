@@ -11,3 +11,6 @@ export const USER_STATS = '/user-stats';
 export const USER_HISTORY = '/user-history';
 export const USER_PROFILE = '/user-profile';
 export const NO_MATCH = '/noMatch';
+export const USER = '/api/user/:id';
+export const USERS = '/api/users';
+export const FILE_INPUT = '/file-input';
