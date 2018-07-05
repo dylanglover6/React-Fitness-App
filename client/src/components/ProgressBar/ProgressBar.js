@@ -10,7 +10,7 @@ const ProgressBar = props => (
         path: { stroke: `rgba(62, 152, 199, ${props.yourPercentage / 100})` },
       }}
     />
-    <span className="btn btn-danger" onClick={() => props.handleClick()}> click </span>
+    <span className="btn btn-danger" onClick={() => props.handleClick()}> {props.buttonText} </span>
   </div>
   )
 
