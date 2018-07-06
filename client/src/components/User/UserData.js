@@ -1,11 +1,12 @@
-import React, { Component } from "react";
+import React from "react";
 import { Col, Row, Container } from '../Grid';
 import { Input, FormBtn } from "./ProfileForm";
 import Jumbotron from "../Jumbotron";
 import API from "../../utils/User/API";
-import { FileInput, imageFile } from './FileInput';
+import FileInput from "./FileInput";
+import firebase from 'firebase';
 
-class UserData extends Component {
+class UserData extends React.Component {
 
   state = {   
     userData: [],
@@ -16,13 +17,7 @@ class UserData extends Component {
 };
 
 componentDidMount() {
-  this.getUserDataHandler();
-}
-
-getUserDataHandler() {
-  // API.getUser()
-  // .then(res => this.setState({userData: res.data}))
-  // .catch(err => console.log(err));
+  // this.showFileInput();
 }
 
 handleInputChange = event => {
@@ -33,29 +28,39 @@ handleInputChange = event => {
 }
 
 handleFormSubmit = event => {
-// Start: To save user's email to mongodb
-  event.preventDefault();
+  
+  const user = firebase.auth().currentUser;
+  if (user != null) {
+    user.providerData.forEach(function (profile) {
+      const email = profile.email;
+      console.log("  Email: " + email);
+      return email;
+    });
+  }
+
   API.saveUser({
+    email: user.email,
     username: this.state.username,
-    fileInput: imageFile,
     age: this.state.age,
     gender: this.state.gender,
     weight: this.state.weight
   })
   .then(console.log(`
-    UserName: ${this.state.username}
-    Age: ${this.state.age}
-    Gender: ${this.state.gender}
-    Weight: ${this.state.weight}
+  email: ${user.email}
+  Username: ${this.state.username}
+  Age: ${this.state.age}
+  Gender: ${this.state.gender}
+  Weight: ${this.state.weight}
   `))
-  .then(res => console.log(imageFile))
   .catch(err => this.setState({ error: err.message }));      
   // End: To save user's email to mongodb
+  event.preventDefault(); 
 }
 
 render() {
 
       return(
+       
         <div>
           <div>
             <Container fluid>
@@ -91,9 +96,13 @@ render() {
                       onChange={this.handleInputChange}
                       placeholder="Weight in lbs"
                     />
+                    <FileInput 
+              
+                    />
                     <FormBtn
                       disabled={!(this.state.username)}
-                      onClick={this.handleFormSubmit}>
+                      onClick={this.handleFormSubmit}
+                      >
                   
                       Submit Profile Information
                     </FormBtn>
@@ -104,6 +113,7 @@ render() {
           </Container>      
         </div>
       </div>
+
     );
   }
 }

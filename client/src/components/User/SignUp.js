@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link, withRouter, } from 'react-router-dom';
 import { auth } from '../../firebase';
 import * as routes from '../../constants/routes';
+import API from '../../utils/User/API';
 
 const SignUpPage = ({ history }) =>
   <div>
@@ -38,6 +39,11 @@ class SignUpForm extends Component {
     const {
       history, 
     } = this.props;
+
+    API.saveUser({
+      username: this.state.username,
+      email: this.state.email
+    })
 
     auth.doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {

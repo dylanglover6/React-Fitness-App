@@ -3,11 +3,11 @@ import React, { Component } from "react";
 class FileInput extends React.Component {
   constructor(props) {
     super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.fileInput = React.createRef();
   }
 
-  handleSubmit(event) {
+  handleChange(event) {
     event.preventDefault();
     let fileInput = this.fileInput.current.files[0].name;
   
@@ -16,27 +16,20 @@ class FileInput extends React.Component {
         fileInput
       }`
     )
+    return fileInput;
   }
-  
   
   render() {
     return (
-      
-      <form onSubmit={this.handleSubmit}>
+      <div onChange={this.handleChange}>
+
         <label>
           Upload file:
           <input type="file" ref={this.fileInput} />
         </label>
-        <br />
-        <button type="submit">Submit</button>
-      </form>
+      </div>
     );
   }
 }
 
-const imageFile = () => {
-
-}
- 
-export { imageFile };
 export default FileInput;
