@@ -15,9 +15,13 @@
   
 }
 
+.btn {
+  margin: 10px;
+}
+
 .CircularProgressbar .CircularProgressbar-path {
   stroke: #3e98c7;
-  stroke-linecap: round;
+  stroke-linecap: flat;
   transition: stroke-dashoffset 0.5s ease 0s;
 }
 
