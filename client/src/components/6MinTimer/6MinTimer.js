@@ -9,7 +9,8 @@ const Timer = props => (
   alpha={0.9}
   size={300}
   weight={25}
-  onComplete={() => props.timerComplete()} />
+  onComplete={() => props.timerComplete()}
+  paused= {props.pauseBoolean} />
 )
 
 export default Timer;

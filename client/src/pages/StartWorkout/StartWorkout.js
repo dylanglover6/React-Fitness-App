@@ -11,7 +11,9 @@ class StartWorkout extends Component {
       timerColor: "#3e98c7",
       yourPercentage: 0,
       timeLeft: 10,
-      timesRan: 0
+      timesRan: 0,
+      pauseBoolean: false,
+      buttonText: "Pause"
     };
   }
 
@@ -24,38 +26,57 @@ class StartWorkout extends Component {
     
   timerComplete() {
     
-    // this.setState((prevState, props) => ({
-      // timesRan : prevState.timesRan +1
-    // }))
     this.setState({
       timesRan: this.state.timesRan += 1,
     });
     
     if (this.state.yourPercentage != 100) {  
-      let newPercentage = this.state.yourPercentage += 20;
+      let newPercentage
       let newTimer;
+      let newColor;
       console.log(this.state.timesRan)
         if (this.state.timesRan === 1 || this.state.timesRan === 3 || this.state.timesRan === 5 || this.state.timesRan === 7) 
         {
+          newPercentage = this.state.yourPercentage += 20
           newTimer = 5
+          newColor = "#eb6864"
           console.log("odd")
         }
         else if (this.state.timesRan === 2 || this.state.timesRan === 4 || this.state.timesRan === 6 || this.state.timesRan === 8 ) 
         {
+          newPercentage = this.state.yourPercentage
           newTimer = 10
+          newColor = "#3e98c7"
           console.log("even")
         }
-        else {
-          console.log("nope")
+        else if (this.state.timesRan === 9) {
+          newPercentage = 100
+          newTimer = 0
+          console.log("Done")
         }
 
         this.setState({
           yourPercentage: newPercentage,
-          timeLeft: newTimer
+          timeLeft: newTimer,
+          timerColor: newColor
         })
     }
   }
-
+  
+  handleClick = () => {
+    if (this.state.pauseBoolean === false) {
+      this.setState({
+        pauseBoolean: true,
+        buttonText: "Start"
+      })
+    } 
+    else {
+      this.setState({
+        pauseBoolean: false,
+        buttonText: "Pause"
+      })
+    }
+  }
 
   render() {
     console.log(this.state);
@@ -63,12 +84,15 @@ class StartWorkout extends Component {
       <Container fluid>
         <ProgressBar 
           yourPercentage = {this.state.yourPercentage}
+          buttonText = {this.state.buttonText}
+          handleClick = {this.handleClick}
         />
         <Timer 
           timeLeft = {this.state.timeLeft}
           timerColor = {this.state.timerColor}
           timerComplete = {this.timerComplete.bind(this)}   
           timesRan = {this.state.timesRan}  
+          pauseBoolean = {this.state.pauseBoolean}
         />
         
       </Container>
