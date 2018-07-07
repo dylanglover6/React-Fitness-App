@@ -5,9 +5,7 @@ mongoose.Promise = global.Promise;
 
 mongoose.connect(
   process.env.MONGODB_URI || "mongodb://localhost/reactFitnessApp",
-  {
-    useMongoClient: true
-  }
+
 );
 
 const exercisesSeed = [
@@ -41,7 +39,7 @@ const exercisesSeed = [
     description:
       "Jump 3 to 4 inches off of the ground with legs together while simultaneously waving your arms in a circular motion",
   }
-];
+]
 
 db.Exercises
   .remove({})
