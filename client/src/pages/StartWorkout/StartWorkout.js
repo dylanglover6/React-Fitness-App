@@ -86,6 +86,7 @@ class StartWorkout extends Component {
           yourPercentage = {this.state.yourPercentage}
           buttonText = {this.state.buttonText}
           handleClick = {this.handleClick}
+          timerComplete = {this.timerComplete.bind(this)}
         />
         <Timer 
           timeLeft = {this.state.timeLeft}

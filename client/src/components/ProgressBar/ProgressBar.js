@@ -11,6 +11,7 @@ const ProgressBar = props => (
       }}
     />
     <span className="btn btn-danger" onClick={() => props.handleClick()}> {props.buttonText} </span>
+    <span className="btn btn-danger" onClick={() => props.timerComplete()}> Skip </span>
   </div>
   )
 
