@@ -4,7 +4,6 @@ import { Col, Row, Container } from "../../components/Grid";
 import AccountPage from '../../components/User/Account';
 import './Home.css';
 import Jumbotron from '../../components/Jumbotron';
-
 import ViewWorkouts from '../ViewWorkouts';
 import { Link, withRouter, } from 'react-router-dom';
 import * as routes from '../../constants/routes';
@@ -17,8 +16,7 @@ const HomePage = () =>
   <Container fluid>
     <Row>
       <Col size="md-6 sm-12" backgroundImage="https://www.nichemarket.co.za/wp-content/uploads/2017/08/fitness-hashtags-1.jpg">
-      <Link to={routes.START_WORKOUT}>Start Workout</Link>
-
+        <Link to={routes.START_WORKOUT}>Start Workout</Link>
 
       </Col>
       <Col size="md-6 sm-12" backgroundImage="http://d1nnx3nhddxmeh.cloudfront.net/wp-content/uploads/2018/05/01122827/fitness-goals-achieve_feature.png">
@@ -27,10 +25,11 @@ const HomePage = () =>
     </Row>
     <Row>
       <Col size="md-6 sm-12" backgroundImage="https://www.t-nation.com/system/publishing/article_assets/1213/original/Plank.jpg?ts=1418675477">
-      <Link to={routes.FAVORITE_WORKOUTS}>Favorite/Recent Workouts</Link>        {/* <FavoritesList /> */}
+        <Link to={routes.FAVORITE_WORKOUTS}>Favorite/Recent Workouts</Link>
+        {/* <FavoritesList /> */}
       </Col>
       <Col size="md-6 sm-12" backgroundImage="http://cdn-img.health.com//sites/default/files/wp_migrated_images/exhausted-from-exercise-400x400.jpg">
-      <Link to={routes.USER_HISTORY}>User Stats/ Workout History</Link>
+        <Link to={routes.USER_HISTORY}>User Stats/ Workout History</Link>
         {/* <WeekHistory />
         <FullWorkoutHistory /> */}
       </Col>
@@ -41,7 +40,7 @@ const HomePage = () =>
         <AccountPage />
       </Col>
       <Col size="md-6 sm-12" backgroundImage="https://support.jefit.com/hc/en-us/article_attachments/201909320/Screen_Shot_2015-01-12_at_12.04.07_PM.png">
-      <Link to={routes.USER_PROFILE}>Profile Info Here</Link>
+        <Link to={routes.USER_PROFILE}>Profile Info Here</Link>
       </Col>
     </Row>
   </Container>

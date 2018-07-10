@@ -19,4 +19,4 @@ const Favorites = () => (
   </Container>
 );
 
-export default Favorites; 
+export default Favorites;

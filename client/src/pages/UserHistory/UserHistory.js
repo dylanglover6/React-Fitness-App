@@ -24,4 +24,4 @@ const UserHistory = () => (
   </Container>
 );
 
-export default UserHistory; 
+export default UserHistory;
