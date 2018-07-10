@@ -8,6 +8,7 @@ router.route("/")
 
 // Suppsed to match with '/api/users/:id'
 router.route('/:id')
-  .get(usersController.findById);
+  .get(usersController.findById)
+  .get(usersController.update);
 
   module.exports = router;

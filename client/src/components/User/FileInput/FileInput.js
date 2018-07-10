@@ -1,8 +1,12 @@
 import React from 'react';
+import withAuthorization from '../withAuthorization';
 import PropTypes from 'prop-types';
-import './index.css';
+import './FileInput.css';
 import FlipMove from 'react-flip-move';
-import UploadIcon from './UploadIcon.svg';
+import { Col, Row, Container } from '../../Grid';
+import { FormBtn } from '../ProfileForm';
+import { Redirect, withRouter } from 'react-router-dom';
+import { ProgressBar } from 'react-bootstrap';
 
 const styles = {
 	display: "flex",
@@ -17,9 +21,11 @@ class ReactImageUploadComponent extends React.Component {
 		super(props);
 		this.state = {
 			pictures: [],
-            files: [],
-            notAcceptedFileType: [],
-			notAcceptedFileSize: []
+      files: [],
+      notAcceptedFileType: [],
+			notAcceptedFileSize: [],
+			requiresRedirect : false,
+			buttonMessage: 'Continue to Home'
 		};
 		this.inputElement = '';
 		this.onDropFile = this.onDropFile.bind(this);
@@ -37,6 +43,7 @@ class ReactImageUploadComponent extends React.Component {
 	 Handle file validation
 	 */
 	onDropFile(e) {
+
 		const files = e.target.files;
 		const _this = this;
 
@@ -57,42 +64,34 @@ class ReactImageUploadComponent extends React.Component {
 				_this.setState({notAcceptedFileSize: newArray});
 				continue;
 			}
-
+			
 			const reader = new FileReader();
 			// Read the image via FileReader API and save image result in state.
 			reader.onload = (function () {
 				return function (e) {
-                    // Add the file name to the data URL
-                    let dataURL = e.target.result;
-                    dataURL = dataURL.replace(";base64", `;name=${f.name};base64`);
-
-                    if (_this.props.singleImage === true) {
-                        _this.setState({pictures: [dataURL], files: [f]}, () => {
-                            _this.props.onChange(_this.state.files, _this.state.pictures);
-                        });
-                    } else if (_this.state.pictures.indexOf(dataURL) === -1) {
-                        const newArray = _this.state.pictures.slice();
-                        newArray.push(dataURL);
-
-                        const newFiles = _this.state.files.slice();
-                        newFiles.push(f);
-
-                        _this.setState({pictures: newArray, files: newFiles}, () => {
-                            _this.props.onChange(_this.state.files, _this.state.pictures);
-                        });
-                    }
+					// Add the file name to the data URL
+					let dataURL = e.target.result;
+					dataURL = dataURL.replace(";base64", `;name=${f.name};base64`);
+					_this.changeButtonMessage();
+					
+					if (_this.props.singleImage === true) {
+						_this.setState({pictures: [dataURL], files: [f]}, () => {
+							_this.props.onChange(_this.state.files, _this.state.pictures);
+						});
+					} else if (_this.state.pictures.indexOf(dataURL) === -1) {
+						const newArray = _this.state.pictures.slice();
+						newArray.push(dataURL);
+						
+						const newFiles = _this.state.files.slice();
+						newFiles.push(f);
+						
+						_this.setState({pictures: newArray, files: newFiles}, () => {
+							_this.props.onChange(_this.state.files, _this.state.pictures);
+						});
+					}
 				};
 			})(f);
 			reader.readAsDataURL(f);
-		}
-	}
-
-  /*
-   Render the upload icon
-   */
-  renderIcon() {
-		if (this.props.withIcon) {
-      return <img src={UploadIcon} className="uploadIcon"	alt="Upload Icon" />;
 		}
 	}
 
@@ -101,7 +100,7 @@ class ReactImageUploadComponent extends React.Component {
 	 */
 	renderLabel() {
 		if (this.props.withLabel) {
-		  return <p className={this.props.labelClass} style={this.props.labelStyles}>{this.props.label}</p>
+		  return <h4 className={this.props.labelClass} style={this.props.labelStyles}>{this.props.label}</h4>
 		}
 	}
 
@@ -117,13 +116,14 @@ class ReactImageUploadComponent extends React.Component {
 	 Remove the image from state
 	 */
 	removeImage(picture) {
-        const removeIndex = this.state.pictures.findIndex(e => e === picture);
-        const filteredPictures = this.state.pictures.filter((e, index) => index !== removeIndex);
-        const filteredFiles = this.state.files.filter((e, index) => index !== removeIndex);
+		const removeIndex = this.state.pictures.findIndex(e => e === picture);
+		const filteredPictures = this.state.pictures.filter((e, index) => index !== removeIndex);
+		const filteredFiles = this.state.files.filter((e, index) => index !== removeIndex);
 
-        this.setState({pictures: filteredPictures, files: filteredFiles}, () => {
-            this.props.onChange(this.state.files, this.state.pictures);
-        });
+		this.setState({pictures: filteredPictures, files: filteredFiles}, () => {
+			this.props.onChange(this.state.files, this.state.pictures);
+			this.changeButtonMessage();
+		});
 	}
 
 	/*
@@ -156,8 +156,8 @@ class ReactImageUploadComponent extends React.Component {
 	 Render preview images
 	 */
 	renderPreview() {
-		return (
-			<div className="uploadPicturesWrapper">
+			return (
+				<div className="uploadPicturesWrapper">
 				<FlipMove enterAnimation="fade" leaveAnimation="fade" style={styles}>
 					{this.renderPreviewPictures()}
 				</FlipMove>
@@ -176,34 +176,77 @@ class ReactImageUploadComponent extends React.Component {
 		});
 	}
 
+	handleGoHome = event => {
+		this.setState({requiresRedirect: true})
+	}
+
+	handleImageSave = event => {
+	//
+	}
+
+	maybeRedirect(){
+		if( this.state.requiresRedirect ){
+			return <Redirect to="/home" />
+		}
+	}
+
+	changeButtonMessage(){
+		if(this.state.buttonMessage === 'Continue to Home') {
+			this.setState({buttonMessage: 'Save Profile Photo'})
+	} else if (this.state.buttonMessage === 'Save Profile Photo') {
+		this.setState({buttonMessage: 'Continue to Home'})
+	}
+}
+
 	render() {
 		return (
-			<div className={"fileUploader " + this.props.className} style={this.props.style}>
-				<div className="fileContainer">
-					{this.renderIcon()}
-					{this.renderLabel()}
-					<div className="errorsContainer">
-						{this.renderErrors()}
-					</div>
-					<button
-                        type={this.props.buttonType}
-						className={"chooseFileButton " + this.props.buttonClassName}
-						style={this.props.buttonStyles}
-						onClick={this.triggerFileUpload}
-					>
-                        {this.props.buttonText}
-					</button>
-					<input
-						type="file"
-						ref={input => this.inputElement = input}
-						name={this.props.name}
-						multiple="multiple"
-						onChange={this.onDropFile}
-						accept={this.props.accept}
-					/>
-					{ this.props.withPreview ? this.renderPreview() : null }
-				</div>
-			</div>
+			<div className="form">
+			{ this.maybeRedirect() }
+    		<Container fluid>
+      		<Row>
+        		<Col size="sm-12">
+          		<Row>
+							<Col size="sm-2 md-3 lg-4" ></Col>
+							<Col size="sm-8 md-6 lg-4">
+								<div className="input-background">
+									<div className={"fileUploader " + this.props.className} style={this.props.style}>
+										<div className="fileContainer">
+											{this.renderLabel()}
+											<div className="errorsContainer">
+												{this.renderErrors()}
+											</div>
+											<FormBtn
+												type={this.props.buttonType}
+												className={"chooseFileButton " + this.props.buttonClassName}
+												style={this.props.buttonStyles}
+												onClick={this.triggerFileUpload}
+											>
+												{this.props.buttonText}
+											</FormBtn>
+											<input
+												type="file"
+												ref={input => this.inputElement = input}
+												name={this.props.name}
+												multiple="multiple"
+												onChange={this.onDropFile}
+												accept={this.props.accept}
+											/>
+											{ this.props.withPreview ? this.renderPreview() : null }
+										<FormBtn
+											onClick={this.handleGoHome}>
+											{this.state.buttonMessage}
+										</FormBtn>
+										<ProgressBar active now={90} />
+										</div>
+									</div>
+								</div>
+							</Col>
+						<Col size="sm-2 md-3 lg-4" ></Col>
+					</Row>
+        </Col>
+      </Row>
+    </Container>  
+  </div>
 		)
 	}
 }
@@ -212,14 +255,12 @@ ReactImageUploadComponent.defaultProps = {
 	className: '',
 	buttonClassName: "",
 	buttonStyles: {},
-	withPreview: false,
+	withPreview: true,
 	accept: "image/*",
 	name: "",
-	withIcon: true,
-	buttonText: "Choose images",
-    buttonType: "submit",
+	buttonText: "Choose profile image",
 	withLabel: true,
-	label: "Max file size: 5mb, accepted: jpg|gif|png",
+	label: "Upload your profile picture!",
 	labelStyles: {},
 	labelClass: "",
 	imgExtension: ['.jpg', '.gif', '.png'],
@@ -230,7 +271,7 @@ ReactImageUploadComponent.defaultProps = {
 	style: {},
 	errorStyle: {},
 	singleImage: false,
-    onChange: () => {}
+  onChange: () => {}
 };
 
 ReactImageUploadComponent.propTypes = {
@@ -240,11 +281,10 @@ ReactImageUploadComponent.propTypes = {
   onDelete: PropTypes.func,
 	buttonClassName: PropTypes.string,
 	buttonStyles: PropTypes.object,
-    buttonType: PropTypes.string,
+  buttonType: PropTypes.string,
 	withPreview: PropTypes.bool,
 	accept: PropTypes.string,
 	name: PropTypes.string,
-	withIcon: PropTypes.bool,
 	buttonText: PropTypes.string,
 	withLabel: PropTypes.bool,
 	label: PropTypes.string,
@@ -259,50 +299,6 @@ ReactImageUploadComponent.propTypes = {
   singleImage: PropTypes.bool
 };
 
-export default ReactImageUploadComponent;
+const authCondition = (authUser) => !!authUser;
 
-
-
-// import React from "react";
-
-// class FileInput extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.handleChange = this.handleChange.bind(this);
-//     this.fileInput = React.createRef();
-//   }
-
-  
-  
-//   handleChange(event) {
-//     event.preventDefault();
-//     let fileInput = this.fileInput.current.files[0].name;
-//     let  src = 'data:image/jpeg;base64,' + fileInput;
-//     console.log(src);
-    
-//     console.log(
-//       `Selected file: ${
-//         fileInput
-//       }`
-//     )
-//     return fileInput;
-//   }
-
-  
-//   render() {
-    
-//     return (
-//       <div onChange={this.handleChange}>
-
-//         <label>
-//           Upload file:
-//           <input type="file" ref={this.fileInput} />
-//         </label>
-//         <img src="data:image/jpeg;base64, ECF39747-1A2F-497F-AB48-86897DE1ED08-1464-000003C903A116C4.jpeg" />
-
-//       </div>
-//     );
-//   }
-// }
-
-// export default FileInput;
+export default withAuthorization(authCondition)(ReactImageUploadComponent);

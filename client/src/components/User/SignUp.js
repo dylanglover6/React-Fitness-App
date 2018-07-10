@@ -16,7 +16,7 @@ const SignUpPage = ({ history }) =>
             <Col size="sm-2 md-3 lg-4" ></Col>
             <Col size="sm-8 md-6 lg-4">
               <div className="input-background">
-                <h3>SignUp</h3>
+                <h4>Sign Up with Every Body Fits!</h4>
                 <SignUpForm history={history} />
                 <p>
                   Already have an account? 
@@ -33,7 +33,6 @@ const SignUpPage = ({ history }) =>
   </div>
 
 const INITIAL_STATE = {
-  username: '',
   email: '',
   passwordOne: '',
   passwordTwo: '',
@@ -53,7 +52,6 @@ class SignUpForm extends Component {
 
   onSubmit = (event) => {
     const {
-      username,
       email,
       passwordOne,
     } = this.state;
@@ -77,7 +75,6 @@ class SignUpForm extends Component {
   render() {
 
     const {
-      username,
       email,
       passwordOne,
       passwordTwo,
@@ -87,17 +84,10 @@ class SignUpForm extends Component {
     const isInvalid =
     passwordOne !== passwordTwo ||
     passwordOne === '' ||
-    email === '' ||
-    username === '';
+    email === '';
 
     return (
       <form onSubmit={this.onSubmit}>
-        <Input
-          value={username}
-          onChange={event => this.setState(byPropKey('username', event.target.value))}
-          type="text"
-          placeholder="Username"
-        />
         <Input
           value={email}
           onChange={event => this.setState(byPropKey('email', event.target.value))}

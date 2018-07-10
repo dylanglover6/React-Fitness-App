@@ -18,7 +18,7 @@ const SignInPage = ({ history }) =>
             <Col size="sm-8 md-6 lg-4">
             <div className="input-background">
 
-            <h3>SignIn</h3>
+            <h4>Sign in to your account.</h4>
             <SignInForm history={history} />
             <SignUpLink />
             <PasswordForgetLink />
