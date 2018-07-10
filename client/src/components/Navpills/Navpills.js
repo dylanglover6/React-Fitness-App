@@ -3,8 +3,11 @@ import "./Navpills.css";
 
 const Navpills = props => (
     <div>
+
         <ul className="nav nav-pills nav-justified">
-            <p>Workouts</p>
+            
+            
+            
             <li
                 className={props.message.indexOf('incorrectly') !== -1 ? 
                     "desc-incorrect" : 
