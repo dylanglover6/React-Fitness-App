@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route} from "react-router-dom";
 import NoMatch from "./pages/NoMatch";
-import Navbar from "./components/Navbar";
 import ViewWorkouts from "./pages/ViewWorkouts";
 import StartWorkout from "./pages/StartWorkout";
 import LandingPage from './pages/Landing/Landing';
@@ -15,15 +14,14 @@ import withAuthentication from './components/User/withAuthentication';
 import Favorites from './pages/Favorites/Favorites';
 import UserProfile from './pages/UserProfile';
 import UserHistory from './pages/UserHistory';
-import UserData from './components/User/UserData';
+import UserData from './components/User/ProfileForm/UserData';
 import AllUsers from './components/User/AllUsers';
-import FileInput from './components/User/FileInput';
+import FileInput from './components/User/FileInput/FileInput';
 
 
 const App = () => (
   <Router>
     <div>
-      <Navbar />
         <Route exact path={routes.START_WORKOUT} component={() => <StartWorkout />} />
         <Route exact path={routes.VIEW_WORKOUTS} component={() => <ViewWorkouts />} />
         <Route exact path={routes.FAVORITE_WORKOUTS} component={() => <Favorites />} />
@@ -38,7 +36,7 @@ const App = () => (
         <Route exact path={routes.PASSWORD_FORGET} component={() => <PasswordForgetPage />} />
         <Route exact path={routes.HOME} component={() => <HomePage />} />
         <Route exact path={routes.ACCOUNT} component={() => <AccountPage />} />
-        <Route exact path={routes.USER} component={() => <UserData />} />
+        <Route exact path={routes.USER_DATA} component={() => <UserData />} />
         <Route exact path={routes.USERS} component={() => <AllUsers />} />
         <Route exact path={routes.FILE_INPUT} component={() => <FileInput />} />
         {/* Firebase User Auth Routes end here.  */}
