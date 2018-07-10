@@ -2,15 +2,37 @@ import React, { Component } from 'react';
 import { Link, withRouter, } from 'react-router-dom';
 import { auth } from '../../firebase';
 import * as routes from '../../constants/routes';
+import { Col, Row, Container } from '../Grid';
+import { Input, FormBtn } from './ProfileForm';
+import './ProfileForm/UserData.css';
+import { ProgressBar } from 'react-bootstrap';
 
 const SignUpPage = ({ history }) =>
-  <div>
-    <h1>SignUp</h1>
-    <SignUpForm history={history} />
+  <div className="form">
+    <Container fluid>
+      <Row>
+        <Col size="sm-12">
+          <Row>
+            <Col size="sm-2 md-3 lg-4" ></Col>
+            <Col size="sm-8 md-6 lg-4">
+              <div className="input-background">
+                <h4>Sign Up with Every Body Fits!</h4>
+                <SignUpForm history={history} />
+                <p>
+                  Already have an account? 
+                  {' '}
+                  <Link to={routes.LANDING}>Sign In</Link>
+                </p>
+              </div>
+            </Col>
+            <Col size="sm-2 md-3 lg-4" ></Col>
+          </Row>
+        </Col>
+      </Row>
+    </Container>  
   </div>
 
 const INITIAL_STATE = {
-  username: '',
   email: '',
   passwordOne: '',
   passwordTwo: '',
@@ -30,7 +52,6 @@ class SignUpForm extends Component {
 
   onSubmit = (event) => {
     const {
-      username,
       email,
       passwordOne,
     } = this.state;
@@ -39,18 +60,11 @@ class SignUpForm extends Component {
       history, 
     } = this.props;
 
-    // Start: To save user's email to mongodb
-    // API.saveUser({
-    //   email: email
-    // }).then(console.log(email))
-    // .catch(err => console.log(err));
-    // End: To save user's email to mongodb
-
     auth.doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
         this.setState(() => ({ ...INITIAL_STATE }));
-        history.push(routes.HOME);
-      }).then(console.log(username))
+        history.push(routes.USER_DATA);
+      })
       .catch(error => {
         this.setState(byPropKey('error', error));
       });
@@ -61,7 +75,6 @@ class SignUpForm extends Component {
   render() {
 
     const {
-      username,
       email,
       passwordOne,
       passwordTwo,
@@ -71,40 +84,34 @@ class SignUpForm extends Component {
     const isInvalid =
     passwordOne !== passwordTwo ||
     passwordOne === '' ||
-    email === '' ||
-    username === '';
+    email === '';
 
     return (
       <form onSubmit={this.onSubmit}>
-        <input
-          value={username}
-          onChange={event => this.setState(byPropKey('username', event.target.value))}
-          type="text"
-          placeholder="Username"
-        />
-        <input
+        <Input
           value={email}
           onChange={event => this.setState(byPropKey('email', event.target.value))}
           type="text"
           placeholder="Email Address"
         />
-        <input
+        <Input
           value={passwordOne}
           onChange={event => this.setState(byPropKey('passwordOne', event.target.value))}
           type="password"
           placeholder="Password"
         />
-        <input
+        <Input
           value={passwordTwo}
           onChange={event => this.setState(byPropKey('passwordTwo', event.target.value))}
           type="password"
           placeholder="Confirm Password"
         />
-        <button disabled={isInvalid} type="submit">
+        <FormBtn disabled={isInvalid} type="submit">
           Sign Up
-        </button>
+        </FormBtn>
 
         { error && <p>{error.message}</p> }
+        <ProgressBar active now={30} />
       </form>
     );
   }
