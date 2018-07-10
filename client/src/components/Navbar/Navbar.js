@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from 'react-router-dom';
 import * as routes from '../../constants/routes';
 import AuthUserContext from '../User/AuthUserContext';
+import SignOutButton from '../User/SignOut';
 import './Navbar.css';
 
 class Greeting extends React.Component {
@@ -26,6 +27,7 @@ const NavigationAuth = () => (
     <Link to={routes.HOME} className="navbar-brand" >
       React Fitness App
     </Link>
+    <SignOutButton />
 
     <p></p>
     

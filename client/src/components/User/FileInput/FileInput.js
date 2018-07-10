@@ -192,8 +192,8 @@ class ReactImageUploadComponent extends React.Component {
 
 	changeButtonMessage(){
 		if(this.state.buttonMessage === 'Continue to Home') {
-			this.setState({buttonMessage: 'Save Profile Photo'})
-	} else if (this.state.buttonMessage === 'Save Profile Photo') {
+			this.setState({buttonMessage: 'Save Profile Image'})
+	} else if (this.state.buttonMessage === 'Save Profile Image') {
 		this.setState({buttonMessage: 'Continue to Home'})
 	}
 }

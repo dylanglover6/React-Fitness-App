@@ -5,7 +5,6 @@ import AccountPage from '../../components/User/Account';
 const UserProfile = () => (
   <div>
 
-    <UserData />
     <AccountPage />
     
   </div>
