@@ -1,7 +1,7 @@
 import React from "react";
 
-export const Col = ({ size, backgroundImage, children }) => (
-  <div className={size.split(" ").map(size => "col-" + size).join(" ")} style={{ backgroundImage: `url(${backgroundImage})` }}>
+export const Col = ({ size, children }) => (
+  <div className={size.split(" ").map(size => "col-" + size).join(" ")}>
     {children}
   </div>
 );

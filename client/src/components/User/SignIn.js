@@ -1,14 +1,35 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { PasswordForgetLink } from './PasswordForget';
+import { SignUpLink } from './SignUp';
 import { auth } from '../../firebase';
 import * as routes from '../../constants/routes';
+import { Col, Row, Container } from '../Grid';
+import { Input, FormBtn } from './ProfileForm';
+import './ProfileForm/UserData.css';
 
 const SignInPage = ({ history }) =>
-  <div>
-    <h1>SignIn</h1>
-    <SignInForm history={history} />
-    <PasswordForgetLink />
+  <div className="form">
+    <Container fluid>
+      <Row>
+        <Col size="sm-12">
+          <Row>
+            <Col size="sm-2 md-3 lg-4" ></Col>
+            <Col size="sm-8 md-6 lg-4">
+            <div className="input-background">
+
+            <h4>Sign in to your account.</h4>
+            <SignInForm history={history} />
+            <SignUpLink />
+            <PasswordForgetLink />
+
+            </div>
+            </Col>
+            <Col size="sm-2 md-3 lg-4" ></Col>
+          </Row>
+        </Col>
+      </Row>
+    </Container>  
   </div>
 
 const byPropKey = (propertyName, value) => () => ({
@@ -63,23 +84,26 @@ class SignInForm extends Component {
 
     return (
       <form onSubmit={this.onSubmit}>
-        <input
+
+        <Input
           value={email}
           onChange={event => this.setState(byPropKey('email', event.target.value))}
           type="text"
           placeholder="Email Address"
         />
-        <input
+  
+        <Input
           value={password}
           onChange={event => this.setState(byPropKey('password', event.target.value))}
           type="password"
           placeholder="Password"
         />
-        <button disabled={isInvalid} type="submit">
+        <FormBtn disabled={isInvalid} type="submit">
           Sign In
-        </button>
+        </FormBtn>
 
         { error && <p>{error.message}</p> }
+  
       </form>
     );
   }

@@ -1,15 +1,13 @@
-import React, { Component } from "react";
-import { Container } from "../../components/Grid";
+import React from "react";
+import UserData from '../../components/User/ProfileForm/UserData';
+import AccountPage from '../../components/User/Account';
 
-class UserProfile extends Component {
-  
-  render() {
-    return (
-      <Container fluid>
-      <h1>User Profile Here</h1>
-      </Container>
-    );
-  }
-}
+const UserProfile = () => (
+  <div>
+
+    <AccountPage />
+    
+  </div>
+)
 
 export default UserProfile;

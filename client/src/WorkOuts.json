@@ -1,0 +1,27 @@
+[
+    {
+        "workouts": "workout1",
+        "image": "https://c2.staticflickr.com/2/1763/29440234198_d08c9d257c_o.png"
+    },
+    {
+        "workouts": "workout2",
+        "image": "https://c1.staticflickr.com/1/913/29440234158_066560f38d_o.png"
+    },
+    {
+        "workouts": "workout3",
+        "image": "https://c2.staticflickr.com/2/1781/29440234048_d669e58166_o.png"
+    },
+    {
+        "workouts": "workout4",
+        "image": "https://c1.staticflickr.com/1/927/29440233948_d6fbb06780_o.png"
+    },
+    {
+        "workouts": "workout5",
+        "image": "https://c1.staticflickr.com/1/838/29440233888_ac4dcd3eb7_o.png"
+    },
+    {
+        "workouts": "workout6",
+        "image": "https://c2.staticflickr.com/2/1766/29440233618_55076836a0_o.png"
+    }
+    
+]
