@@ -28,7 +28,13 @@ const UserSchema = new Schema({
   
   age: { 
     type: String, 
-    trim: true 
+    trim: true,
+    validate: [
+      function(input) {
+        return input.length = 8;
+      },
+      "Please enter only 8 digits."
+    ]
   },
   
   gender: { 
