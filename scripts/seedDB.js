@@ -8,7 +8,7 @@ mongoose.connect(
 
 );
 
-const exercisesSeed = [
+const workoutsSeed = [
   {
     name: "Pushups",
     img: "http://irongrif.com/uploads/exercise/image/112/show_img_close_grip.jpg",
@@ -38,12 +38,17 @@ const exercisesSeed = [
     img: "https://i.guim.co.uk/img/static/sys-images/Guardian/Pix/pictures/2015/3/3/1425380525245/2f3040fe-3edd-47c7-b9d2-5d008fe6e260-444x600.jpeg?w=300&q=55&auto=format&usm=12&fit=max&s=b8ac759d1270b780adb859831bad262b",
     description:
       "Jump 3 to 4 inches off of the ground with legs together while simultaneously waving your arms in a circular motion",
-  }
+  },
+  {
+    name : "workout6",
+    img: "https://c2.staticflickr.com/2/1766/29440233618_55076836a0_o.png",
+    description: "workout6"
+   }
 ]
 
-db.Exercises
+db.Workouts
   .remove({})
-  .then(() => db.Exercises.collection.insertMany(exercisesSeed))
+  .then(() => db.Workouts.collection.insertMany(workoutsSeed))
   .then(data => {
     console.log(data.insertedIds.length + " records inserted!");
     process.exit(0);

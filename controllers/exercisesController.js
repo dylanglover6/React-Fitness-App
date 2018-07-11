@@ -1,16 +1,15 @@
-const axios = require('axios');
+// const axios = require('axios');
 const db = require("../models");
 
 // Defining methods for the workoutsController
 module.exports = {
-  getExercises: function() {
-    return axios.get("https://wger.de/api/v2/exercise/?page=3-H 'Authoriza'ion: Token 71e9eb9ae2e59bb78d86dc669a1c7bc77b659791'")
-      .then(res => {
-      console.log(res);
-    });
+  // getExercises: function() {
+  //   return axios.get("https://wger.de/api/v2/exercise/")
+  //     .then(res => {
+  //     console.log(res.data.results.name);
+  //   });
 
-
-  },
+  // },
   findAll: function(req, res) {
   db.Exercises
     .find(req.query)
