@@ -5,7 +5,7 @@ import './FileInput.css';
 import FlipMove from 'react-flip-move';
 import { Col, Row, Container } from '../../Grid';
 import { FormBtn } from '../ProfileForm';
-import { Redirect, withRouter } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { ProgressBar } from 'react-bootstrap';
 
 const styles = {
@@ -206,8 +206,8 @@ class ReactImageUploadComponent extends React.Component {
       		<Row>
         		<Col size="sm-12">
           		<Row>
-							<Col size="sm-2 md-3 lg-4" ></Col>
-							<Col size="sm-8 md-6 lg-4">
+							<Col size="sm-4" ></Col>
+							<Col size="sm-4">
 								<div className="input-background">
 									<div className={"fileUploader " + this.props.className} style={this.props.style}>
 										<div className="fileContainer">
@@ -236,12 +236,12 @@ class ReactImageUploadComponent extends React.Component {
 											onClick={this.handleGoHome}>
 											{this.state.buttonMessage}
 										</FormBtn>
-										<ProgressBar active now={90} />
 										</div>
+										<ProgressBar active now={90} />
 									</div>
 								</div>
 							</Col>
-						<Col size="sm-2 md-3 lg-4" ></Col>
+						<Col size="sm-4" ></Col>
 					</Row>
         </Col>
       </Row>
