@@ -5,7 +5,11 @@ import * as routes from '../../constants/routes';
 import { Col, Row, Container } from '../Grid';
 import { Input, FormBtn } from './ProfileForm';
 import './ProfileForm/UserData.css';
-import { ProgressBar } from 'react-bootstrap';
+import { ProgressBar, FormGroup, FormControl } from 'react-bootstrap';
+
+const styles = {
+  textAlign: "center",
+}
 
 const SignUpPage = ({ history }) =>
   <div className="form">
@@ -13,10 +17,10 @@ const SignUpPage = ({ history }) =>
       <Row>
         <Col size="sm-12">
           <Row>
-            <Col size="sm-2 md-3 lg-4" ></Col>
-            <Col size="sm-8 md-6 lg-4">
+            <Col size="sm-4"></Col>
+            <Col size="sm-4">
               <div className="input-background">
-                <h4>Sign Up with Every Body Fits!</h4>
+                <h3 style={styles}>Sign Up!</h3>
                 <SignUpForm history={history} />
                 <p>
                   Already have an account? 
@@ -25,7 +29,7 @@ const SignUpPage = ({ history }) =>
                 </p>
               </div>
             </Col>
-            <Col size="sm-2 md-3 lg-4" ></Col>
+            <Col size="sm-4" ></Col>
           </Row>
         </Col>
       </Row>
@@ -72,6 +76,19 @@ class SignUpForm extends Component {
     event.preventDefault();
   }
 
+  getPasswordOneValidationState() {
+    let length = this.state.passwordOne.length;
+    if (length > 5) return 'success';
+    else if (length > 0) return 'error';
+    return null;
+  }
+  getPasswordTwoValidationState() {
+    let length = this.state.passwordTwo.length;
+    if (length > 5) return 'success';
+    else if (length > 0) return 'error';
+    return null;
+  }
+
   render() {
 
     const {
@@ -94,24 +111,34 @@ class SignUpForm extends Component {
           type="text"
           placeholder="Email Address"
         />
-        <Input
+        <FormGroup
+        controlId="passwordOneLengthValidation"
+        validationState={this.getPasswordOneValidationState()}>
+        <FormControl
           value={passwordOne}
           onChange={event => this.setState(byPropKey('passwordOne', event.target.value))}
           type="password"
           placeholder="Password"
         />
-        <Input
+        <FormControl.Feedback />
+        </FormGroup>
+        <FormGroup
+        controlId="passwordTwoLengthValidation"
+        validationState={this.getPasswordTwoValidationState()}>
+        <FormControl
           value={passwordTwo}
           onChange={event => this.setState(byPropKey('passwordTwo', event.target.value))}
           type="password"
           placeholder="Confirm Password"
         />
+        <FormControl.Feedback />
+        </FormGroup>
         <FormBtn disabled={isInvalid} type="submit">
           Sign Up
         </FormBtn>
 
         { error && <p>{error.message}</p> }
-        <ProgressBar active now={30} />
+        <ProgressBar active now={10} />
       </form>
     );
   }
