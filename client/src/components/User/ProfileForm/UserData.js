@@ -78,11 +78,11 @@ handleFormSubmit = event => {
 }
 
 DOBValidation(){
-const length = this.state.age.length;
-if(length > 8) return 'error';
-else if(length > 7) return 'success';
-else if(length > 0) return 'error';
-return null;
+  const length = this.state.age.length;
+  if(length > 8) return 'error';
+  else if(length > 7) return 'success';
+  else if(length > 0) return 'error';
+  return null;
 }
 
 maybeRedirect(){
