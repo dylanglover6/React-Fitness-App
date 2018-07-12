@@ -15,6 +15,9 @@ import withAuthentication from './components/User/withAuthentication';
 import Favorites from './pages/Favorites/Favorites';
 import UserProfile from './pages/UserProfile';
 import UserHistory from './pages/UserHistory';
+import UserData from './components/User/UserData';
+import AllUsers from './components/User/AllUsers';
+import FileInput from './components/User/FileInput';
 
 
 const App = () => (
@@ -35,6 +38,9 @@ const App = () => (
         <Route exact path={routes.PASSWORD_FORGET} component={() => <PasswordForgetPage />} />
         <Route exact path={routes.HOME} component={() => <HomePage />} />
         <Route exact path={routes.ACCOUNT} component={() => <AccountPage />} />
+        <Route exact path={routes.USER} component={() => <UserData />} />
+        <Route exact path={routes.USERS} component={() => <AllUsers />} />
+        <Route exact path={routes.FILE_INPUT} component={() => <FileInput />} />
         {/* Firebase User Auth Routes end here.  */}
       
     </div>

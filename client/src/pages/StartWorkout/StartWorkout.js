@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Col, Row, Container } from "../../components/Grid";
 import ProgressBar from "../../components/ProgressBar";
 import Timer from "../../components/6MinTimer";
+import API from "../../utils/Workouts/API";
+import TextArea from "../../components/TextArea/TextArea";
 
 
 class StartWorkout extends Component {
@@ -13,61 +15,84 @@ class StartWorkout extends Component {
       timeLeft: 10,
       timesRan: 0,
       pauseBoolean: false,
-      buttonText: "Pause"
+      buttonText: "Pause",
+      workout: {},
+      exerciseCounter: 0,
+      instructionsText: ""
     };
   }
-
+   
   handleInputChange = event => {
     const {name, value} = event.target;
     this.setState({ 
     [name]: value
     })
   };
+  
+
+  componentDidMount() {
+    API.getWorkouts()//this.props.match.params.id)
+      .then(res => {
+        this.setState({
+          workout: res.data
+        })
+      })
+      .catch (err => console.log(err));
+  }
     
+  
+  //runs when each timer finishes
   timerComplete() {
     
+    console.log(this.state.workout[this.state.exerciseCounter].name)
     this.setState({
       timesRan: this.state.timesRan += 1,
     });
-    
+    //verifys that progress bar isnt full
     if (this.state.yourPercentage != 100) {  
       let newPercentage
       let newTimer;
       let newColor;
-      console.log(this.state.timesRan)
+      let nextExercise;
+      let instructionsText;
+        //break function, should be 15 seconds
         if (this.state.timesRan === 1 || this.state.timesRan === 3 || this.state.timesRan === 5 || this.state.timesRan === 7) 
         {
           newPercentage = this.state.yourPercentage += 20
           newTimer = 5
           newColor = "#eb6864"
-          console.log("odd")
+          nextExercise = this.state.exerciseCounter += 1 
+          instructionsText = "Take a Break! Up Next:"
         }
+        //exercise timer function, should be minute
         else if (this.state.timesRan === 2 || this.state.timesRan === 4 || this.state.timesRan === 6 || this.state.timesRan === 8 ) 
         {
           newPercentage = this.state.yourPercentage
           newTimer = 10
           newColor = "#3e98c7"
-          console.log("even")
         }
+        //last 5 min timer
         else if (this.state.timesRan === 9) {
           newPercentage = 100
           newTimer = 0
-          console.log("Done")
         }
 
         this.setState({
           yourPercentage: newPercentage,
           timeLeft: newTimer,
-          timerColor: newColor
+          timerColor: newColor,
+          instructionsText: instructionsText
         })
     }
   }
   
+  //pause/play button
   handleClick = () => {
     if (this.state.pauseBoolean === false) {
       this.setState({
         pauseBoolean: true,
         buttonText: "Start"
+        
       })
     } 
     else {
@@ -79,7 +104,10 @@ class StartWorkout extends Component {
   }
 
   render() {
-    console.log(this.state);
+    let workoutText = "";
+    if (this.state.workout.length > 0) {
+      workoutText = this.state.workout[this.state.exerciseCounter].name
+    }
     return (
       <Container fluid>
         <ProgressBar 
@@ -87,6 +115,10 @@ class StartWorkout extends Component {
           buttonText = {this.state.buttonText}
           handleClick = {this.handleClick}
           timerComplete = {this.timerComplete.bind(this)}
+        />
+        <TextArea
+          instructionsText={this.state.instructionsText}
+          workoutText={workoutText}
         />
         <Timer 
           timeLeft = {this.state.timeLeft}

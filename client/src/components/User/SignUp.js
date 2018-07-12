@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link, withRouter, } from 'react-router-dom';
 import { auth } from '../../firebase';
 import * as routes from '../../constants/routes';
+import API from '../../utils/User/API';
 
 const SignUpPage = ({ history }) =>
   <div>
@@ -39,12 +40,10 @@ class SignUpForm extends Component {
       history, 
     } = this.props;
 
-    // Start: To save user's email to mongodb
-    // API.saveUser({
-    //   email: email
-    // }).then(console.log(email))
-    // .catch(err => console.log(err));
-    // End: To save user's email to mongodb
+    API.saveUser({
+      username: this.state.username,
+      email: this.state.email
+    })
 
     auth.doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {

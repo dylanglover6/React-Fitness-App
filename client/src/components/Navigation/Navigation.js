@@ -25,3 +25,21 @@ const NavigationNonAuth = () =>
   </ul>
 
 export default Navigation;
+
+import React from 'react';
+
+// CodeCademy nice easy, short way for a navbar.
+// export class NavBar extends React.Component {
+//   render() {
+//     const pages = ['home', 'blog', 'pics', 'bio', 'art', 'shop', 'about', 'contact'];
+//     const navLinks = pages.map(page => {
+//       return (
+//         <a href={'/' + page}>
+//           {page}
+//         </a>
+//       )
+//     });
+
+//     return <nav>{navLinks}</nav>;
+//   }
+// }

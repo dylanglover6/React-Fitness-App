@@ -4,9 +4,7 @@ import { Col, Row, Container } from "../../components/Grid";
 import AccountPage from '../../components/User/Account';
 import './Home.css';
 import Jumbotron from '../../components/Jumbotron';
-
-import ViewWorkouts from '../ViewWorkouts';
-import { Link, withRouter, } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import * as routes from '../../constants/routes';
 // import FavoritesList from '../../components/UserComponents/FavoritesList';
 // import WeekHistory from '../../components/UserComponents/WeekHistory';
@@ -18,8 +16,6 @@ const HomePage = () =>
     <Row>
       <Col size="md-6 sm-12" backgroundImage="https://www.nichemarket.co.za/wp-content/uploads/2017/08/fitness-hashtags-1.jpg">
       <Link to={routes.START_WORKOUT}>Start Workout</Link>
-
-
       </Col>
       <Col size="md-6 sm-12" backgroundImage="http://d1nnx3nhddxmeh.cloudfront.net/wp-content/uploads/2018/05/01122827/fitness-goals-achieve_feature.png">
       <Link to={routes.VIEW_WORKOUTS}>View Workouts</Link>
