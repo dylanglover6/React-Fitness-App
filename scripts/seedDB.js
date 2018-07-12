@@ -42,7 +42,7 @@ const userSeed = [
 
 ]
 
-const exercisesSeed = [
+const workoutsSeed = [
   {
     name: "Pushups",
     img: "http://irongrif.com/uploads/exercise/image/112/show_img_close_grip.jpg",
@@ -88,9 +88,9 @@ db.User
 });
 
 
-db.Exercises
+db.Workout
 .remove({})
-.then(() => db.Exercises.collection.insertMany(exercisesSeed))
+.then(() => db.Workout.collection.insertMany(workoutsSeed))
 .then(data => {
   console.log(data.insertedIds.length + " records inserted!");
   process.exit(0);
