@@ -75,19 +75,6 @@ const workoutsSeed = [
    }
 ]
 
-// <<<<<<< HEAD
-db.Workouts
-  .remove({})
-  .then(() => db.Workouts.collection.insertMany(workoutsSeed))
-  .then(data => {
-    console.log(data.insertedIds.length + " records inserted!");
-    process.exit(0);
-  })
-  .catch(err => {
-    console.error(err);
-    process.exit(1);
-  });
-// =======
 db.User
 .remove({})
 .then(() => db.User.collection.insertMany(userSeed))
@@ -100,21 +87,19 @@ db.User
   process.exit(1);
 });
 
-
-db.Workout
-.remove({})
-.then(() => db.Workout.collection.insertMany(workoutsSeed))
-.then(data => {
-  console.log(data.insertedIds.length + " records inserted!");
-  process.exit(0);
-})
-.catch(err => {
-  console.error(err);
-  process.exit(1);
-});
+db.Workouts
+  .remove({})
+  .then(() => db.Workouts.collection.insertMany(workoutsSeed))
+  .then(data => {
+    console.log(data.insertedIds.length + " records inserted!");
+    process.exit(0);
+  })
+  .catch(err => {
+    console.error(err);
+    process.exit(1);
+  });
 
 mongoose.connect(
   process.env.MONGODB_URI || "mongodb://localhost/reactFitnessApp",
 
 );
-// >>>>>>> 0fb506b812dad227c1ab6ed3f72fa22bf2f3a139
