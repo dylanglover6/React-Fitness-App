@@ -31,20 +31,21 @@ class StartWorkout extends Component {
   
 
   componentDidMount() {
-    API.getWorkouts()//this.props.match.params.id)
+    API.getWorkouts()
       .then(res => {
         this.setState({
           workout: res.data
         })
       })
       .catch (err => console.log(err));
+      
   }
     
   
   //runs when each timer finishes
   timerComplete() {
     
-    console.log(this.state.workout[this.state.exerciseCounter].name)
+    console.log(this.state.workout[0])
     this.setState({
       timesRan: this.state.timesRan += 1,
     });
