@@ -5,6 +5,7 @@ mongoose.Promise = global.Promise;
 // Seed file for mongodb/reactFitnessApp/users collection (table).
 const userSeed = [
 {
+  email: "ryang@ryang.com",
   username: "ryanG",
   fileInput: "C90F6793-CA09-45C8-A3EB-883CBCC48DDF-1464-000003C8E4F8E6C1.jpeg",
   age: "37",
@@ -14,7 +15,8 @@ const userSeed = [
 },
 
 {  
-  username: "smarterThanYou",
+  email: "gerry@gerry.com",
+  username: "gerry",
   fileInput: "C90F6793-CA09-45C8-A3EB-883CBCC48DDF-1464-000003C8E4F8E6C1.jpeg",
   age: "65",
   gender: "Male",
@@ -23,6 +25,7 @@ const userSeed = [
 },
 
 {  
+  email: "stephWins@stephWins.com",
   username: "stephWins",
   fileInput: "C90F6793-CA09-45C8-A3EB-883CBCC48DDF-1464-000003C8E4F8E6C1.jpeg",
   age: "36",
@@ -32,6 +35,7 @@ const userSeed = [
 },
 
 {  
+  email: "lisa@guzman.com",
   username: "LisaGuzman",
   fileInput: "C90F6793-CA09-45C8-A3EB-883CBCC48DDF-1464-000003C8E4F8E6C1.jpeg",
   age: "61",
@@ -75,16 +79,15 @@ const workoutsSeed = [
    }
 ]
 
+
 db.User
 .remove({})
 .then(() => db.User.collection.insertMany(userSeed))
 .then(data => {
-  console.log(data.insertedIds.length + " records inserted!");
-  process.exit(0);
+  console.log(data.insertedIds.length + "Users records inserted!");
 })
 .catch(err => {
   console.error(err);
-  process.exit(1);
 });
 
 db.Workouts

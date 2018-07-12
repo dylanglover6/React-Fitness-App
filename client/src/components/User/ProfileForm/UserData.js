@@ -6,11 +6,11 @@ import { FormBtn } from "./FormBtn";
 import API from "../../../utils/User/API";
 import firebase from 'firebase';
 import './UserData.css';
-import { Redirect, withRouter } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { ProgressBar, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 
 class UserData extends React.Component {
-
+  
   state = {  
     username: '',
     firstName: '', 
@@ -23,6 +23,14 @@ class UserData extends React.Component {
 
 componentDidMount() {
   // this.showFileInput();
+}
+
+getValidationState() {
+  const length = this.state.age.length;
+  if (length > 7) return 'success';
+  else if (length > 0) return 'error';
+  else if (length > 8) return 'error';
+  return null;
 }
 
 handleInputChange = event => {
@@ -69,6 +77,14 @@ handleFormSubmit = event => {
   event.preventDefault(); 
 }
 
+DOBValidation(){
+  const length = this.state.age.length;
+  if(length > 8) return 'error';
+  else if(length > 7) return 'success';
+  else if(length > 0) return 'error';
+  return null;
+}
+
 maybeRedirect(){
   if( this.state.requiresRedirect ){
     return <Redirect to="/file-input" />
@@ -86,11 +102,10 @@ render() {
           <Row>
             <Col size="sm-12">
               <Row>
-                <Col size="sm-2 md-3 lg-4" ></Col>
-                <Col size="sm-8 md-6 lg-4" className="input-background">
+                <Col size="sm-4" ></Col>
+                <Col size="sm-4" className="input-background">
                   <div className="input-background">
                     <form>
-
                     <label>Username</label>
                       <Input
                         name="username"
@@ -118,15 +133,20 @@ render() {
                           placeholder="Last Name"
                         />
 
-                      <label>Date Of Birth</label>
-                      <Input
+                      <FormGroup
+                        controlId="DOBValidation" 
+                        validationState={this.DOBValidation()}
+                        >
+                      <ControlLabel>Date Of Birth</ControlLabel>
+                      <FormControl
                         name="age"
                         type="number"
                         value={this.state.age}
                         onChange={this.handleInputChange}
                         placeholder="MMDDYYYY"
                       />
-
+                      <FormControl.Feedback />
+                      </FormGroup>
                       <FormGroup controlId="formControlsSelect">
                         <ControlLabel>Gender</ControlLabel>
                         <FormControl 
@@ -161,7 +181,7 @@ render() {
                     </form>
                   </div>
                 </Col>
-                <Col size="sm-2 md-3 lg-4" ></Col>
+                <Col size="sm-4" ></Col>
               </Row>
             </Col>
           </Row>

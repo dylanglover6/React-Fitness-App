@@ -14,18 +14,18 @@ const SignInPage = ({ history }) =>
       <Row>
         <Col size="sm-12">
           <Row>
-            <Col size="sm-2 md-3 lg-4" ></Col>
-            <Col size="sm-8 md-6 lg-4">
+            <Col size="sm-4" ></Col>
+            <Col size="sm-4">
             <div className="input-background">
 
-            <h4>Sign in to your account.</h4>
+            <h3>Sign in to your account.</h3>
             <SignInForm history={history} />
             <SignUpLink />
             <PasswordForgetLink />
 
             </div>
             </Col>
-            <Col size="sm-2 md-3 lg-4" ></Col>
+            <Col size="sm-4" ></Col>
           </Row>
         </Col>
       </Row>
