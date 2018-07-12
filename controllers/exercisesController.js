@@ -4,10 +4,11 @@ const db = require("../models");
 // Defining methods for the workoutsController
 module.exports = {
   // getExercises: function() {
-  //   return axios.get("https://wger.de/api/v2/exercise/?format=json")
+  //   return axios.get("https://wger.de/api/v2/exercise/")
   //     .then(res => {
-  //     console.log(res);
+  //     console.log(res.data.results.name);
   //   });
+
   // },
   findAll: function(req, res) {
   db.Exercises

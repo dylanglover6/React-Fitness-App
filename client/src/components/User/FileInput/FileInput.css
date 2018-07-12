@@ -3,7 +3,7 @@
 }
 
 .fileContainer {
-	background: #fff;
+	/* background: #fff; */
 	box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.05);
 	position: relative;
 	border-radius: 10px;
@@ -84,10 +84,10 @@
 }
 
 .fileContainer .uploadPictureContainer {
-	width: 25%;
+	/* width: 25%; */
 	margin: 5%;
-	padding: 10px;
-	background: #edf2f6;
+	padding: 4px;
+	/* background: #edf2f6; */
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -106,11 +106,10 @@
 	top: -9px;
 	right: -9px;
 	color: #fff;
-	background: #ff4081;
+	background: #1f5272bf;
 	border-radius: 50%;
 	text-align: center;
 	cursor: pointer;
-	font-size: 26px;
 	font-weight: bold;
 	line-height: 30px;
 	width: 30px;
@@ -119,8 +118,21 @@
 
 .flipMove {
 	display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    width: 100%;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	width: 100%;
+}
+
+/* To match other components */
+.form {
+  padding-top: 20%;
+  padding-bottom: 20%;
+  background-image: url("https://images.unsplash.com/photo-1517344687790-7338f238f7f5?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=60cbef02eb928db2f4ba8474f972cdb8&auto=format&fit=crop&w=700&q=60");
+  background-size: 100%;
+}
+
+.input-background {
+  background-color: #ffffffb8;
+  padding: 2%;
 }

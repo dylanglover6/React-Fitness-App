@@ -44,37 +44,50 @@ const userSeed = [
 
 const workoutsSeed = [
   {
-    name: "Pushups",
-    img: "http://irongrif.com/uploads/exercise/image/112/show_img_close_grip.jpg",
-    description:
-      "With face, palms and toes facing down, keeping legs and back straight while extending arms straight to push body up and back down again",
+    name: "Full Body 1",
+    img: "https://c2.staticflickr.com/2/1763/29440234198_d08c9d257c_o.png",
+    description: "Jumping Jacks, Pushups, Crunches, Lunges, Single Leg Stands"
   },
   {
-    name: "Situps",
-    img: "https://cdn-xi3mbccdkztvoept8hl.netdna-ssl.com/wp-content/uploads/watermarked/Sit-ups.png",
-    description:
-      "While lying flat on the back, lift the torso to a sitting position, and then lie flat again without changing the position of the legs",
+    name: "Core",
+    img: "https://c1.staticflickr.com/1/913/29440234158_066560f38d_o.png",
+    description: "Eleveated Pike Pushup, Alternating Side Planks, Supermans, Bent Knee Pushups, Supine Reverse Crunches"
   },
   {
-    name: "Jumping Jacks",
-    img: "https://cdn.instructables.com/FLV/BN83/I8SLTHTQ/FLVBN83I8SLTHTQ.LARGE.jpg",
-    description:
-      "While standing with feet together, knees slightly bent, and arms to sides, jump while raising arms and separating legs to a shoulders-width apart. Land on forefoot with legs apart and arms overhead. Jump again while lower arms and returning legs to midline.",
+    name: "Butt and Legs",
+    img: "https://c2.staticflickr.com/2/1781/29440234048_d669e58166_o.png",
+    description: "Single Leg Stands, Standing Calf Raises, Glute Bridges, Forward Lunges, Supermans"
   },
   {
-    name: "High Knees",
-    img: "https://cdn-xi3mbccdkztvoept8hl.netdna-ssl.com/wp-content/uploads/watermarked/High_Knees_F_WorkoutLabs.png",
-    description:
-      "Stand with your feet slightly apart, your weight concentrated in the balls of your feet and your arms relaxed at your sides. Lift your left knee high while bringing your heel toward your glutes and keeping your toes up. Drive your leg back toward the ground, taking a small step forward",
+    name: "Full Body 2",
+    img: "https://c1.staticflickr.com/1/927/29440233948_d6fbb06780_o.png",
+    description: "Farmer's Walk, Dumbell Calf-Raises, Dumbell Floor Press, Crunches, Supermans"
   },
   {
-    name: "Jump Rope",
-    img: "https://i.guim.co.uk/img/static/sys-images/Guardian/Pix/pictures/2015/3/3/1425380525245/2f3040fe-3edd-47c7-b9d2-5d008fe6e260-444x600.jpeg?w=300&q=55&auto=format&usm=12&fit=max&s=b8ac759d1270b780adb859831bad262b",
-    description:
-      "Jump 3 to 4 inches off of the ground with legs together while simultaneously waving your arms in a circular motion",
-  }
+    name: "Full Body 3",
+    img: "https://c1.staticflickr.com/1/838/29440233888_ac4dcd3eb7_o.png",
+    description: "Calf Raises, Single Leg Stands, Pushups, Forward Lunges, Lateral Raises"
+  },
+  {
+    name : "Full Body 4",
+    img: "https://c2.staticflickr.com/2/1766/29440233618_55076836a0_o.png",
+    description: "Crunches, Lunges, Farmer's Walk, Pushups, Single Leg Stands"
+   }
 ]
 
+// <<<<<<< HEAD
+db.Workouts
+  .remove({})
+  .then(() => db.Workouts.collection.insertMany(workoutsSeed))
+  .then(data => {
+    console.log(data.insertedIds.length + " records inserted!");
+    process.exit(0);
+  })
+  .catch(err => {
+    console.error(err);
+    process.exit(1);
+  });
+// =======
 db.User
 .remove({})
 .then(() => db.User.collection.insertMany(userSeed))
@@ -104,3 +117,4 @@ mongoose.connect(
   process.env.MONGODB_URI || "mongodb://localhost/reactFitnessApp",
 
 );
+// >>>>>>> 0fb506b812dad227c1ab6ed3f72fa22bf2f3a139

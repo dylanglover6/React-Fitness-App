@@ -14,3 +14,4 @@ export const NO_MATCH = '/noMatch';
 export const USER = '/api/user/:id';
 export const USERS = '/api/users';
 export const FILE_INPUT = '/file-input';
+export const USER_DATA = '/user-data';
