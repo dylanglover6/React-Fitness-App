@@ -1,10 +1,15 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
 import ProgressBar from "../../components/ProgressBar";
 import Timer from "../../components/6MinTimer";
 import API from "../../utils/Workouts/API";
 import TextArea from "../../components/TextArea/TextArea";
 import CurrentUser from '../../components/User/CurrentUser';
+import WorkoutJumbotron from "../../components/WorkoutJumbotron";
+import firebase from 'firebase';                                                 
+import CompletedModal from "../../components/CompletedModal/CompletedModal";
+
 
 class StartWorkout extends Component {
   constructor(props) {
@@ -12,16 +17,17 @@ class StartWorkout extends Component {
     this.state = {
       timerColor: "#3e98c7",
       yourPercentage: 0,
-      timeLeft: 10,
+      timeLeft: 60,
       timesRan: 0,
       pauseBoolean: false,
       buttonText: "Pause",
       workout: {},
       exerciseCounter: 0,
-      instructionsText: ""
+      instructionsText: "",
+      isOpen: false
     };
   }
-   
+
   handleInputChange = event => {
     const {name, value} = event.target;
     this.setState({ 
@@ -45,7 +51,7 @@ class StartWorkout extends Component {
   //runs when each timer finishes
   timerComplete() {
     
-    console.log(this.state.workout[0])
+    console.log(this.state.workout[0]._id)
     this.setState({
       timesRan: this.state.timesRan += 1,
     });
@@ -60,7 +66,7 @@ class StartWorkout extends Component {
         if (this.state.timesRan === 1 || this.state.timesRan === 3 || this.state.timesRan === 5 || this.state.timesRan === 7) 
         {
           newPercentage = this.state.yourPercentage += 20
-          newTimer = 5
+          newTimer = 15
           newColor = "#eb6864"
           nextExercise = this.state.exerciseCounter += 1 
           instructionsText = "Take a Break! Up Next:"
@@ -69,13 +75,15 @@ class StartWorkout extends Component {
         else if (this.state.timesRan === 2 || this.state.timesRan === 4 || this.state.timesRan === 6 || this.state.timesRan === 8 ) 
         {
           newPercentage = this.state.yourPercentage
-          newTimer = 10
+          newTimer = 60
           newColor = "#3e98c7"
         }
-        //last 5 min timer
+        //completed timer
         else if (this.state.timesRan === 9) {
           newPercentage = 100
           newTimer = 0
+          this.toggleModal()
+          
         }
 
         this.setState({
@@ -85,8 +93,18 @@ class StartWorkout extends Component {
           instructionsText: instructionsText
         })
     }
+    console.log(this.state.isOpen)
   }
-  
+
+
+  toggleModal = () => {
+    console.log(this.state.isOpen)
+    this.setState({
+      isOpen: !this.state.isOpen
+      
+    });
+  }
+
   //pause/play button
   handleClick = () => {
     if (this.state.pauseBoolean === false) {
@@ -106,23 +124,34 @@ class StartWorkout extends Component {
 
   render() {
     let workoutText = "";
+    let workoutTitle = "";
     if (this.state.workout.length > 0) {
       workoutText = this.state.workout[0].description[this.state.exerciseCounter]
+      workoutTitle = this.state.workout[0].name
     }
     return (
       <Container fluid>
+        <WorkoutJumbotron
+         workoutTitle={workoutTitle}
+         workoutText={workoutText}
+         instructionsText={this.state.instructionsText}
+        />
+        <CompletedModal
+          workoutTitle={workoutTitle}
+          show={this.state.isOpen}
+          onClose={this.toggleModal}
+        />
         <Row>
-          <Col size="md-12">
+        <Col size="md-2" />
+          <Col size="md-5">
             <ProgressBar 
               yourPercentage = {this.state.yourPercentage}
               buttonText = {this.state.buttonText}
               handleClick = {this.handleClick}
               timerComplete = {this.timerComplete.bind(this)}
             />
-            <TextArea
-              instructionsText={this.state.instructionsText}
-              workoutText={workoutText}
-            />
+          </Col>
+          <Col size="md-4">  
             <Timer 
               timeLeft = {this.state.timeLeft}
               timerColor = {this.state.timerColor}
@@ -130,9 +159,10 @@ class StartWorkout extends Component {
               timesRan = {this.state.timesRan}  
               pauseBoolean = {this.state.pauseBoolean}
             />
-          </Col>
-        </Row>  
+          </Col> 
         <CurrentUser />
+          <Col size="md-1" />
+        </Row>   
       </Container>
     );
   }
