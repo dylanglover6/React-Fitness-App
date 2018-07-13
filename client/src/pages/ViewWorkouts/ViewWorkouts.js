@@ -11,7 +11,7 @@ import WorkoutCard from '../../components/WorkoutCards'
 
 class ViewWorkouts extends Component {
   state = {
-      message: "To select a workout, click an image.",
+      message: "To select a workout, click an image. ",
       topScore: 0,
       curScore: 0,
       cats: work_outs,
@@ -60,7 +60,10 @@ class ViewWorkouts extends Component {
           });
           console.log(workouts);
           console.log(findWorkout);
+
       }
+
+      
 
       //this.shuffleArray(cats);
   };
