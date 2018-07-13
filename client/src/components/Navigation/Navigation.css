@@ -1,0 +1,23 @@
+.ulStyles {
+  margin: 13px;
+  font-size: 14px;
+  text-shadow: 0 -1px 0 rgba(0,0,0,.25);  
+}
+
+.linkStyles {
+  padding: 0px 5px;
+
+}
+
+.navbarStyles {
+  background-image: linear-gradient(rgb(19, 152, 197) 0px, rgb(81, 195, 207) 100%);
+  background-color: white;
+  border: none;
+}
+
+a {
+  color: #ffffffe6;
+}
+.navbar-inverse .navbar-brand {
+  color: #ffffffe6;
+}

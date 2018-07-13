@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Col, Row, Container } from "../../components/Grid";
 import ProgressBar from "../../components/ProgressBar";
 import Timer from "../../components/6MinTimer";
-
+import CurrentUser from '../../components/User/CurrentUser';
 
 class StartWorkout extends Component {
   constructor(props) {
@@ -95,7 +95,7 @@ class StartWorkout extends Component {
           timesRan = {this.state.timesRan}  
           pauseBoolean = {this.state.pauseBoolean}
         />
-        
+        <CurrentUser />
       </Container>
     );
   }

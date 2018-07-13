@@ -6,15 +6,15 @@ import Jumbotron from '../../components/Jumbotron';
 import ViewWorkouts from '../ViewWorkouts';
 import { Link, withRouter, } from 'react-router-dom';
 import * as routes from '../../constants/routes';
-import Navbar from '../../components/Navbar';
+import Navigation from '../../components/Navigation';
 // import FavoritesList from '../../components/UserComponents/FavoritesList';
 // import WeekHistory from '../../components/UserComponents/WeekHistory';
 // import FullWorkoutHistory from '../../components/UserComponents/FullWorkoutHistory';
 
 const HomePage = () =>
-<div>
-  <Navbar />
-
+<div className="background">
+  <Navigation />
+  
   <Container fluid>
     <Col size="sm-2"></Col>
     <Col size="sm-8">
