@@ -2,15 +2,41 @@ import React, { Component } from 'react';
 import { Link, withRouter, } from 'react-router-dom';
 import { auth } from '../../firebase';
 import * as routes from '../../constants/routes';
+import { Col, Row, Container } from '../Grid';
+import { Input, FormBtn } from './ProfileForm';
+import './ProfileForm/UserData.css';
+import { ProgressBar, FormGroup, FormControl } from 'react-bootstrap';
+
+const styles = {
+  textAlign: "center",
+}
 
 const SignUpPage = ({ history }) =>
-  <div>
-    <h1>SignUp</h1>
-    <SignUpForm history={history} />
+  <div className="form">
+    <Container fluid>
+      <Row>
+        <Col size="sm-12">
+          <Row>
+            <Col size="sm-4"></Col>
+            <Col size="sm-4">
+              <div className="input-background">
+                <h3 style={styles}>Sign Up!</h3>
+                <SignUpForm history={history} />
+                <p>
+                  Already have an account? 
+                  {' '}
+                  <Link to={routes.LANDING}>Sign In</Link>
+                </p>
+              </div>
+            </Col>
+            <Col size="sm-4" ></Col>
+          </Row>
+        </Col>
+      </Row>
+    </Container>  
   </div>
 
 const INITIAL_STATE = {
-  username: '',
   email: '',
   passwordOne: '',
   passwordTwo: '',
@@ -30,7 +56,6 @@ class SignUpForm extends Component {
 
   onSubmit = (event) => {
     const {
-      username,
       email,
       passwordOne,
     } = this.state;
@@ -39,18 +64,11 @@ class SignUpForm extends Component {
       history, 
     } = this.props;
 
-    // Start: To save user's email to mongodb
-    // API.saveUser({
-    //   email: email
-    // }).then(console.log(email))
-    // .catch(err => console.log(err));
-    // End: To save user's email to mongodb
-
     auth.doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
         this.setState(() => ({ ...INITIAL_STATE }));
-        history.push(routes.HOME);
-      }).then(console.log(username))
+        history.push(routes.USER_DATA);
+      })
       .catch(error => {
         this.setState(byPropKey('error', error));
       });
@@ -58,10 +76,25 @@ class SignUpForm extends Component {
     event.preventDefault();
   }
 
+  getPasswordOneValidationState() {
+    let length = this.state.passwordOne.length;
+    if (length > 5) return 'success';
+    else if (length > 0) return 'error';
+    return null;
+  }
+  getPasswordTwoValidationState() {
+    let length = this.state.passwordTwo.length;
+    let passwordOne = this.state.passwordOne;
+    let passwordTwo = this.state.passwordTwo;
+    if (length < 1) return null;
+    else if (passwordOne !== passwordTwo) return 'error';
+    else if (passwordOne === passwordTwo) return 'success';
+    return null;
+  }
+
   render() {
 
     const {
-      username,
       email,
       passwordOne,
       passwordTwo,
@@ -71,40 +104,44 @@ class SignUpForm extends Component {
     const isInvalid =
     passwordOne !== passwordTwo ||
     passwordOne === '' ||
-    email === '' ||
-    username === '';
+    email === '';
 
     return (
       <form onSubmit={this.onSubmit}>
-        <input
-          value={username}
-          onChange={event => this.setState(byPropKey('username', event.target.value))}
-          type="text"
-          placeholder="Username"
-        />
-        <input
+        <Input
           value={email}
           onChange={event => this.setState(byPropKey('email', event.target.value))}
           type="text"
           placeholder="Email Address"
         />
-        <input
+        <FormGroup
+        controlId="passwordOneLengthValidation"
+        validationState={this.getPasswordOneValidationState()}>
+        <FormControl
           value={passwordOne}
           onChange={event => this.setState(byPropKey('passwordOne', event.target.value))}
           type="password"
           placeholder="Password"
         />
-        <input
+        <FormControl.Feedback />
+        </FormGroup>
+        <FormGroup
+        controlId="passwordTwoLengthValidation"
+        validationState={this.getPasswordTwoValidationState()}>
+        <FormControl
           value={passwordTwo}
           onChange={event => this.setState(byPropKey('passwordTwo', event.target.value))}
           type="password"
           placeholder="Confirm Password"
         />
-        <button disabled={isInvalid} type="submit">
+        <FormControl.Feedback />
+        </FormGroup>
+        <FormBtn disabled={isInvalid} type="submit">
           Sign Up
-        </button>
+        </FormBtn>
 
         { error && <p>{error.message}</p> }
+        <ProgressBar active now={10} />
       </form>
     );
   }

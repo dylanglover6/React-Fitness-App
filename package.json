@@ -26,11 +26,12 @@
     "axios": "^0.16.2",
     "body-parser": "^1.17.2",
     "express": "^4.15.4",
-    "react-circular-progressbar": "^0.8.0",
-    "react-countdown-clock": "^2.4.0",
-    "yarn": "^1.7.0",
     "firebase": "^5.1.0",
     "if-env": "^1.0.4",
-    "mongoose": "^5.0.17"
+    "mongoose": "^5.0.17",
+    "path": "^0.12.7",
+    "react-circular-progressbar": "^0.8.0",
+    "react-countdown-clock": "^2.4.0",
+    "yarn": "^1.7.0"
   }
 }

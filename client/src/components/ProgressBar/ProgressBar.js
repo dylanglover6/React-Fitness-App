@@ -7,10 +7,11 @@ const ProgressBar = props => (
     <CircularProgressBar
       percentage={props.yourPercentage}
       styles={{
-        path: { stroke: `rgba(62, 152, 199, ${props.yourPercentage / 100})` },
+        path: { stroke: `rgba(62, 152, 199, ${props.yourPercentage / 100})`},
       }}
     />
-    <span className="btn btn-danger" onClick={() => props.handleClick()}> click </span>
+    <span className="btn btn-danger" onClick={() => props.handleClick()}> {props.buttonText} </span>
+    <span className="btn btn-danger" onClick={() => props.timerComplete()}> Skip </span>
   </div>
   )
 

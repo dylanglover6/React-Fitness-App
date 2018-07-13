@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 class FavoritesList extends Component {
 
 
-
 }
 
-export default FavoritesList;
+export default FavoritesList; 
