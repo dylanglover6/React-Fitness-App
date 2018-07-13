@@ -1,11 +1,11 @@
 import React from "react";
 import { Col, Row, Container } from "../../components/Grid";
 import Jumbotron from "../../components/Jumbotron";
-import Navbar from '../../components/Navbar/Navbar';
+import Navigation from "../../components/Navigation";
 
 const Favorites = () => (
   <div>
-    <Navbar />  
+    <Navigation />  
     <Container fluid>
       <Row>
         <Col size="md-12">

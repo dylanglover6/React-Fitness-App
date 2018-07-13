@@ -84,8 +84,11 @@ class SignUpForm extends Component {
   }
   getPasswordTwoValidationState() {
     let length = this.state.passwordTwo.length;
-    if (length > 5) return 'success';
-    else if (length > 0) return 'error';
+    let passwordOne = this.state.passwordOne;
+    let passwordTwo = this.state.passwordTwo;
+    if (length < 1) return null;
+    else if (passwordOne !== passwordTwo) return 'error';
+    else if (passwordOne === passwordTwo) return 'success';
     return null;
   }
 

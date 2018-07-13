@@ -4,7 +4,7 @@ import ProgressBar from "../../components/ProgressBar";
 import Timer from "../../components/6MinTimer";
 import API from "../../utils/Workouts/API";
 import TextArea from "../../components/TextArea/TextArea";
-
+import CurrentUser from '../../components/User/CurrentUser';
 
 class StartWorkout extends Component {
   constructor(props) {
@@ -132,6 +132,7 @@ class StartWorkout extends Component {
             />
           </Col>
         </Row>  
+        <CurrentUser />
       </Container>
     );
   }
