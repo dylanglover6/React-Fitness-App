@@ -107,28 +107,31 @@ class StartWorkout extends Component {
   render() {
     let workoutText = "";
     if (this.state.workout.length > 0) {
-      workoutText = this.state.workout[this.state.exerciseCounter].name
+      workoutText = this.state.workout[0].description[this.state.exerciseCounter]
     }
     return (
       <Container fluid>
-        <ProgressBar 
-          yourPercentage = {this.state.yourPercentage}
-          buttonText = {this.state.buttonText}
-          handleClick = {this.handleClick}
-          timerComplete = {this.timerComplete.bind(this)}
-        />
-        <TextArea
-          instructionsText={this.state.instructionsText}
-          workoutText={workoutText}
-        />
-        <Timer 
-          timeLeft = {this.state.timeLeft}
-          timerColor = {this.state.timerColor}
-          timerComplete = {this.timerComplete.bind(this)}   
-          timesRan = {this.state.timesRan}  
-          pauseBoolean = {this.state.pauseBoolean}
-        />
-        
+        <Row>
+          <Col size="md-12">
+            <ProgressBar 
+              yourPercentage = {this.state.yourPercentage}
+              buttonText = {this.state.buttonText}
+              handleClick = {this.handleClick}
+              timerComplete = {this.timerComplete.bind(this)}
+            />
+            <TextArea
+              instructionsText={this.state.instructionsText}
+              workoutText={workoutText}
+            />
+            <Timer 
+              timeLeft = {this.state.timeLeft}
+              timerColor = {this.state.timerColor}
+              timerComplete = {this.timerComplete.bind(this)}   
+              timesRan = {this.state.timesRan}  
+              pauseBoolean = {this.state.pauseBoolean}
+            />
+          </Col>
+        </Row>  
       </Container>
     );
   }

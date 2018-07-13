@@ -11,7 +11,7 @@ const workoutsSchema = new Schema({
     required: false
   },
   description: {
-    type: String,
+    type: Array,
     required: true
   },
 });
