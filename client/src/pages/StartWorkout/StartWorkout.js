@@ -135,8 +135,8 @@ class StartWorkout extends Component {
     }
     return (
       <div className="background-class">
-        <Container fluid style={containerStyle}>
         <Navigation />
+        <Container fluid style={containerStyle}>       
           <WorkoutJumbotron
           workoutTitle={workoutTitle}
           workoutText={workoutText}
