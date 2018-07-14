@@ -4,15 +4,18 @@
     left: 0;
     background-image: linear-gradient(rgb(19, 152, 197) 0px, rgb(81, 195, 207) 100%);
     min-height: 65px;
+    max-height: 100px;
     width: 100%;
     text-align: center;
     -webkit-box-shadow: 0 14px 28px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.22);
     box-shadow: 0 14px 28px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.22);
     color: #fff;
-    font-size: 2em;
+    font-size: 20px;
     font-weight: bold;
     z-index: 99;
     white-space: nowrap;
+    text-shadow: 0 -1px 0 rgba(0,0,0,.25);  
+
 }
 
 .nav-pills a {
