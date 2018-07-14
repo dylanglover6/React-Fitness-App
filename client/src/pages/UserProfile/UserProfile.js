@@ -7,7 +7,6 @@ const UserProfile = () => (
   <div>
     <Navigation />
     <AccountPage />
-    <ProfileInfo />
     
   </div>
 )

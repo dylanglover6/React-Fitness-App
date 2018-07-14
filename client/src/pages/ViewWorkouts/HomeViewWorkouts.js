@@ -1,29 +1,26 @@
 import React, { Component } from "react";
 import { Col, Row, Container } from "../../components/Grid";
-//import Jumbotron from "../../components/Jumbotron";
-
-import Wrapper from '../../components/Wrapper'
-import Navigation from '../../components/Navigation'
 import work_outs from '../../WorkOuts.json'
-import WorkoutCards2 from '../../components/WorkoutCards2'
+import Wrapper from '../../components/Wrapper'
+import WorkoutCard from '../../components/WorkoutCards'
+import HomeViewWorkoutCard from "./HomeViewWorkoutCard";
 
-class Favorites extends Component {
+
+class HomeViewWorkouts extends Component {
   state = {
+      message: "Click a Workout To Add it to Your Faves. ",
+      topScore: 0,
+      curScore: 0,
       cats: work_outs,
       unselectedCats: work_outs
       
   }
-
   componentDidMount() {
   }
-
-
 
   selectWorkouts = workouts => {
       const findWorkout = this.state.unselectedCats.find(item => item.workouts === workouts);
      
- 
-
       if(findWorkout === undefined) {
           // failure to select a new workout
           this.setState({ 
@@ -48,48 +45,27 @@ class Favorites extends Component {
 
 
       }
-
-      
-
   };
-
-
+  
   render() {
     return (
-        <div>
+      <div>
 
-        <Navigation />
-  <Container fluid>
-    <Row>
-      <Col size="md-12">
-        
-
-         
-        
-
-         <Wrapper>
-
-           {
-                    this.state.cats.map(cat => (
-                        <WorkoutCards2
-                            workouts={cat.workouts}
-                            image={cat.image}
-                            selectWorkouts={this.selectWorkouts} 
-                            curScore={this.state.curScore}
-                            id={cat.id}
-                        />
-                    ))
-                }
-
-
-         </Wrapper>
-      </Col>
-    </Row>
-  </Container>
-
-        </div>
-);
+            {
+              this.state.cats.map(cat => (
+                <HomeViewWorkoutCard
+                  workouts={cat.workouts}
+                  image={cat.image}
+                  selectWorkouts={this.selectWorkouts} 
+                  id={cat.id}
+                  curScore={this.state.curScore}
+                />
+              ))
+            }
+    
+      </div>
+    );
   }
 }
 
-export default Favorites;
+export default HomeViewWorkouts;

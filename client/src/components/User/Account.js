@@ -16,10 +16,7 @@ const AccountPage = () =>
         <h3>Email: {authUser.email}</h3>
         <Col size="sm-12">
           <Row>
-            <Col size="sm-6">
-              <PasswordForgetForm />
-            </Col>
-            <Col size="sm-6">
+            <Col size="sm-12">
               <PasswordChangeForm />
             </Col>
         </Row>
@@ -27,8 +24,6 @@ const AccountPage = () =>
       </div>
     }
   </AuthUserContext.Consumer>
-  <Link to={routes.HOME}>Home</Link>
-  <SignOutButton />
 </div>
 
 const authCondition = (authUser) => !!authUser;

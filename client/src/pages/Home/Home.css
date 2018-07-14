@@ -1,16 +1,87 @@
 .home {
   background-image: url("http://d1nnx3nhddxmeh.cloudfront.net/wp-content/uploads/2018/05/01122827/fitness-goals-achieve_feature.png");
   background-size: 100%;
-  height: 150px;
   background-position: center;
   position: relative;
 }
 
-.background {
-  background-image: url("../../assets/dumbbells-2465478.jpg");
+.homeFave {
+  background-image: url("../../assets/pink.jpg");
   background-size: 100%;
+  height: 150px;
+  background-position: center;
+  position: relative;
+  padding: 40px;
+  text-align: center;
+}
+
+.homeHist {
+  background-image: url("../../assets/yoga.jpg");
+  background-size: 100%;
+  height: 150px;
+  background-position: center;
+  position: relative;
+  padding: 40px;
+  text-align: center;
+}
+
+.homeProf{
+  background-image: url("../../assets/IMG_1524.jpg");
+  background-size: 100%;
+  height: 200px;
+  background-position: center;
+
+
+}
+.homeProf1{
+  background-image: url("../../assets/IMG_1525.jpg");
+  background-size: 100%;
+  height: 200px;
+  background-position: center;
+  position: relative;
+
+}
+.homeProf2{
+  background-image: url("../../assets/IMG_1526.jpg");
+  background-size: 100%;
+  height: 200px;
+  background-position: center;
+  position: relative;
+
+}
+.homeView {
+  background-image: url("http://d1nnx3nhddxmeh.cloudfront.net/wp-content/uploads/2018/05/01122827/fitness-goals-achieve_feature.png");
+  background-size: 100%;
+  height: 150px;
+}
+
+.white {
+  background-color: #e0e9f1;
+}
+.background {
+  background-color: #ffffff;
+  background-size: 100%;
+  padding-bottom: 20px;
+
 }
 
 .componentsStyle {
   margin: 7px 0px;
+}
+
+.smallCard {
+    float: left;
+    width: 15%;
+    margin: 8px;
+}
+
+.homeBtn {
+  font-size: 11px;
+  margin: 0;
+}
+
+.faveSpan {
+  font-size: 35px;
+    padding: 0px;
+    color: white;
 }

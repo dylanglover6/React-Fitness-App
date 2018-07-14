@@ -1,6 +1,6 @@
 .ulStyles {
   margin: 18px;
-  font-size: 14px;
+  font-size: 18px;
   text-shadow: 0 -1px 0 rgba(0,0,0,.25);  
 }
 
@@ -29,6 +29,11 @@
 
 .navbar-inverse .navbar-brand {
   color: #ffffffcc;
+}
+
+.navbar-brand {
+  margin-top: 10px;
+  font-size: 20px;
 }
 
 .ebc {
@@ -63,6 +68,7 @@
 .signOutText {
   color: #ffffffcc;
   text-shadow: 0 -1px 0 rgba(0,0,0,.25); 
+  font-size: 16px
 }
 
 .navbar-inverse .navbar-toggle {

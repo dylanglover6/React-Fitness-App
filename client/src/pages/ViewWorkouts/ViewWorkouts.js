@@ -81,13 +81,13 @@ class ViewWorkouts extends Component {
   render() {
     return (
         <div className="viewBackground">
+            <Navigation />
         
       <Container fluid>
 
         <Row>
           <Col size="md-12">
 
-            <Navigation />
             <Navpills
                     message={this.state.message}
                     curScore={this.state.curScore}
