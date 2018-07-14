@@ -19,7 +19,7 @@ const Navpills = props => (
 
             </li>
 
-             <div> <br /> <li> Workouts Added: <span style={{color: "yellow"}}>{props.curScore}</span> </li> </div> 
+             <div>  <li> Workouts Added: <span style={{color: "yellow"}}>{props.curScore}</span> </li> </div> 
         </ul>
     </div>
 );

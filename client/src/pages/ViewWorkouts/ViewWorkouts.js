@@ -8,12 +8,13 @@ import Navpills from '../../components/Navpills'
 //import Title from '../../components/Title'
 import WorkoutCard from '../../components/WorkoutCards'
 import Navigation from '../../components/Navigation'
+import "./ViewWorkouts.css";
 
 
 
 class ViewWorkouts extends Component {
   state = {
-      message: "To select a workout, click an image. ",
+      message: "Click a Workout To Add it to Your Faves. ",
       topScore: 0,
       curScore: 0,
       cats: work_outs,
@@ -74,30 +75,29 @@ class ViewWorkouts extends Component {
 
 
 //class ViewWorkouts extends Component {
+
+ 
   
   render() {
     return (
+        <div className="viewBackground">
         
-
-
-
       <Container fluid>
+
         <Row>
           <Col size="md-12">
 
             <Navigation />
-         
-           
             <Navpills
                     message={this.state.message}
                     curScore={this.state.curScore}
                     //topScore={this.state.topScore}
                 />
+           
+           
               
           
                 <Wrapper>
-               
-               
                 
                 {
                     this.state.cats.map(cat => (
@@ -119,6 +119,8 @@ class ViewWorkouts extends Component {
           </Col>
         </Row>
       </Container>
+
+      </div>
     );
   }
 }
