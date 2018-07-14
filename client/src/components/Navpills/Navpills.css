@@ -1,8 +1,8 @@
 .nav-pills {
     position: fixed;
-    top: 0;
+    top: 45;
     left: 0;
-    background: #000;
+    background-image: linear-gradient(rgb(19, 152, 197) 0px, rgb(81, 195, 207) 100%);
     min-height: 65px;
     width: 100%;
     text-align: center;

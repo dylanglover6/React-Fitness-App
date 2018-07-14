@@ -7,6 +7,8 @@ import Wrapper from '../../components/Wrapper'
 import Navpills from '../../components/Navpills'
 //import Title from '../../components/Title'
 import WorkoutCard from '../../components/WorkoutCards'
+import Navigation from '../../components/Navigation'
+
 
 
 class ViewWorkouts extends Component {
@@ -31,7 +33,7 @@ class ViewWorkouts extends Component {
  //     }
  // }
   
-
+  
 
 
   selectWorkouts = workouts => {
@@ -61,6 +63,7 @@ class ViewWorkouts extends Component {
           console.log(workouts);
           console.log(findWorkout);
 
+
       }
 
       
@@ -69,23 +72,31 @@ class ViewWorkouts extends Component {
   };
 
 
+
 //class ViewWorkouts extends Component {
   
   render() {
     return (
+        
+
+
+
       <Container fluid>
         <Row>
           <Col size="md-12">
 
-           <Navpills
+            <Navigation />
+         
+           
+            <Navpills
                     message={this.state.message}
                     curScore={this.state.curScore}
-                    topScore={this.state.topScore}
+                    //topScore={this.state.topScore}
                 />
-                
               
           
                 <Wrapper>
+               
                
                 
                 {
