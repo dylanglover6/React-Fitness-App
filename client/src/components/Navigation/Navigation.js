@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import * as routes from '../../constants/routes';
-import { Navbar, Nav } from 'react-bootstrap';
+import { Navbar, Nav, Button } from 'react-bootstrap';
 import NavWrap from './NavWrap';
 import './Navigation.css';
-// import AuthUserContext from '../User/AuthUserContext';
+import { auth } from '../../firebase';
+import SignOutButton from '../User/SignOut';
 
 
 class Navigation extends React.Component {
@@ -15,7 +16,7 @@ class Navigation extends React.Component {
         <Navbar.Header>
           <Navbar.Brand>
             <Link to={routes.HOME}>
-              Every Body Fits
+              <span className="ebc">E</span>very<span className="ebc">B</span>ody<span className="ebc">F</span>its
             </Link>
           </Navbar.Brand>
           <Navbar.Toggle />
@@ -24,17 +25,13 @@ class Navigation extends React.Component {
           <Nav pullRight>
             <NavWrap>
               <ul className="ulStyles">
-                <Link 
-                className="linkStyles"
-                to={routes.VIEW_WORKOUTS}>Workouts  </Link>
-                <Link 
-                className="linkStyles"
-                to={routes.FAVORITE_WORKOUTS}>  Favorites  </Link>
-                <Link 
-                className="linkStyles"
-                to={routes.USER_PROFILE}>Profile</Link>
+                <Link className="linkStyles" to={routes.VIEW_WORKOUTS}>Workouts</Link>
+                <Link className="linkStyles" to={routes.FAVORITE_WORKOUTS}>Favorites</Link>
+                <Link className="linkStyles" to={routes.USER_PROFILE}>Profile</Link>
+                <Button className="navButton" onClick={auth.doSignOut} bsStyle="link"><span className="signOutText">Sign Out</span></Button>
               </ul>
             </NavWrap>
+ 
           </Nav>
         </Navbar.Collapse>
       </Navbar>

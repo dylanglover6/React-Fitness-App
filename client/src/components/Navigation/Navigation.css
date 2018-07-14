@@ -1,12 +1,24 @@
 .ulStyles {
-  margin: 13px;
+  margin: 18px;
   font-size: 14px;
   text-shadow: 0 -1px 0 rgba(0,0,0,.25);  
 }
 
 .linkStyles {
-  padding: 0px 5px;
+  padding: 0px 10px;
+  color: #ffffffcc;
+  font-stretch: 100%;
+  line-height: 20px;
+  font-weight: 400;
+}
 
+.linkStyles:active {
+  color: white;
+}
+
+.linkStyles:hover {
+  color: white;
+  text-decoration: none;
 }
 
 .navbarStyles {
@@ -15,9 +27,48 @@
   border: none;
 }
 
-a {
-  color: #ffffffe6;
-}
 .navbar-inverse .navbar-brand {
-  color: #ffffffe6;
+  color: #ffffffcc;
+}
+
+.ebc {
+  color: #104dc9;;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.navButton { 
+  margin: 0;
+  padding: 0;
+  color: #ffffffcc;
+  vertical-align: initial;
+  margin-left: 10px;
+  text-decoration-color: white;
+  text-decoration-style: none; 
+}
+
+.signOutText:hover {
+  color: white;
+  text-decoration: none;
+}
+
+.navbar-toggle {
+  border-color: none; 
+}
+
+.navbar-inverse {
+  color: #ffffffcc;
+}
+
+.signOutText {
+  color: #ffffffcc;
+  text-shadow: 0 -1px 0 rgba(0,0,0,.25); 
+}
+
+.navbar-inverse .navbar-toggle {
+  border-color: #fefefe00;
+}
+
+.navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
+  background-color: #0f4cc9;
 }
