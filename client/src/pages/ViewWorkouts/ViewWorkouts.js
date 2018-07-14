@@ -84,6 +84,7 @@ class ViewWorkouts extends Component {
                         <WorkoutCard
                             workouts={cat.workouts}
                             image={cat.image}
+                            id={cat.id}
                             selectHotpants={this.selectHotpants} 
                             curScore={this.state.curScore}
                         />
