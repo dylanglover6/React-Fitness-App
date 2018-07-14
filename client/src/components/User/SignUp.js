@@ -20,6 +20,7 @@ const SignUpPage = ({ history }) =>
             <Col size="sm-4"></Col>
             <Col size="sm-4">
               <div className="input-background">
+              <p className="logo" ><span className="ebc">E</span>very<span className="ebc">B</span>ody<span className="ebc">F</span>its</p>
                 <h3 style={styles}>Sign Up!</h3>
                 <SignUpForm history={history} />
                 <p>

@@ -15,6 +15,7 @@ const PasswordForgetPage = () =>
             <Col size="sm-2 md-3 lg-4" ></Col>
             <Col size="sm-8 md-6 lg-4">
               <div className="input-background">
+              <p className="logo" ><span className="ebc">E</span>very<span className="ebc">B</span>ody<span className="ebc">F</span>its</p>
                 <h4>Reset your password via email.</h4>
                 <PasswordForgetForm />
                 <p>

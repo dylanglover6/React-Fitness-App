@@ -17,7 +17,7 @@ const SignInPage = ({ history }) =>
             <Col size="sm-4" ></Col>
             <Col size="sm-4">
             <div className="input-background">
-
+            <p className="logo" ><span className="ebc">E</span>very<span className="ebc">B</span>ody<span className="ebc">F</span>its</p>
             <h3>Sign in to your account.</h3>
             <SignInForm history={history} />
             <SignUpLink />
