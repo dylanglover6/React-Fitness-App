@@ -41,7 +41,7 @@ class StartWorkout extends Component {
   
 
   componentDidMount() {
-    API.getWorkout("5b4827613cf7cf2c8406fa04")
+    API.getWorkout(Window.X)
       .then(res => {
         this.setState({
           workout: res.data
@@ -135,8 +135,8 @@ class StartWorkout extends Component {
     }
     return (
       <div className="background-class">
-        <Container fluid style={containerStyle}>
         <Navigation />
+        <Container fluid style={containerStyle}>       
           <WorkoutJumbotron
           workoutTitle={workoutTitle}
           workoutText={workoutText}
