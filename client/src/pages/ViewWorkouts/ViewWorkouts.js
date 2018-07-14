@@ -104,6 +104,7 @@ class ViewWorkouts extends Component {
                             workouts={cat.workouts}
                             image={cat.image}
                             selectWorkouts={this.selectWorkouts} 
+                            id={cat.id}
                             curScore={this.state.curScore}
                         />
                     ))

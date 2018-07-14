@@ -64,6 +64,7 @@
     animation-iteration-count: 1;
 }
 
+
 @keyframes shake {
     0% { transform: translate(5px, 0px) rotate(0deg); }
     10% { transform: translate(-5px, 0px) rotate(0deg); }

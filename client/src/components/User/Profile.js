@@ -2,37 +2,44 @@ import React from 'react';
 import firebase from 'firebase';
 import API from '../../utils/User/API';
 
-const authUser = firebase.auth().currentUser;
-if (authUser != null) {
-  authUser.providerData.forEach(function (profile) {
-    const email = profile.email;
-    console.log("  Email: " + email);
-    return email;
-  });
-}
+ let email = ""
 
 class ProfileInfo extends React.Component {  
 
+
   state ={
-    user: ''
+    user: '',
+    email: ''
   }
+ getEmail() { 
+   
+  const user = firebase.auth().currentUser;
+  if (user != null) {
+  user.providerData.forEach(function (profile) {
+    email = profile.email;
+    console.log(" Email: " + email);
+    
+  });
 
   
-  getUserInfo() {  
-    API.getUser(this.email)
+  
+  
+    API.getUserbyEmail(email)
     .then(res => this.setState({ user: res.data }))
-    .then(console.log(this.state.user))
+    //.then(console.log(this.state.user))
+    //.then(console.log(this.state.email))
     .catch(err => console.log(err));
-
+} 
   }
-
+ 
   componentDidMount(){
-    this.getUserInfo()
+    
+    this.getEmail()
   }
   
   
   render() {
-    
+  console.log(this.state.user)  
 
     return (
     <div>

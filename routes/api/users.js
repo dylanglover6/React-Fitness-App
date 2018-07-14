@@ -10,5 +10,7 @@ router.route("/")
 router.route('/:id')
   .get(usersController.findById)
   .get(usersController.update);
+router.route('/:email')
+  .get(usersController.findByEmail)
 
   module.exports = router;
