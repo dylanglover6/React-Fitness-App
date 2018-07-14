@@ -9,7 +9,7 @@ import CurrentUser from '../../components/User/CurrentUser';
 import WorkoutJumbotron from "../../components/WorkoutJumbotron";
 import firebase from 'firebase';                                                 
 import CompletedModal from "../../components/CompletedModal/CompletedModal";
-
+import Navigation from "../../components/Navigation"
 
 class StartWorkout extends Component {
   constructor(props) {
@@ -23,8 +23,9 @@ class StartWorkout extends Component {
       buttonText: "Pause",
       workout: {},
       exerciseCounter: 0,
-      instructionsText: "",
-      isOpen: false
+      instructionsText: "Let's Do:",
+      isOpen: false,
+      id: props.id
     };
   }
 
@@ -37,21 +38,20 @@ class StartWorkout extends Component {
   
 
   componentDidMount() {
-    API.getWorkouts()
+    API.getWorkout("5b4827613cf7cf2c8406fa04")
       .then(res => {
         this.setState({
           workout: res.data
         })
       })
       .catch (err => console.log(err));
-      
   }
     
   
   //runs when each timer finishes
   timerComplete() {
     
-    console.log(this.state.workout[0]._id)
+    console.log()
     this.setState({
       timesRan: this.state.timesRan += 1,
     });
@@ -77,6 +77,7 @@ class StartWorkout extends Component {
           newPercentage = this.state.yourPercentage
           newTimer = 60
           newColor = "#3e98c7"
+          instructionsText = "Let's Do:"
         }
         //completed timer
         else if (this.state.timesRan === 9) {
@@ -131,12 +132,14 @@ class StartWorkout extends Component {
     }
     return (
       <Container fluid>
+      <Navigation />
         <WorkoutJumbotron
          workoutTitle={workoutTitle}
          workoutText={workoutText}
          instructionsText={this.state.instructionsText}
         />
         <CompletedModal
+          userEmail= {<CurrentUser />}
           workoutTitle={workoutTitle}
           show={this.state.isOpen}
           onClose={this.toggleModal}
@@ -160,7 +163,6 @@ class StartWorkout extends Component {
               pauseBoolean = {this.state.pauseBoolean}
             />
           </Col> 
-        <CurrentUser />
           <Col size="md-1" />
         </Row>   
       </Container>

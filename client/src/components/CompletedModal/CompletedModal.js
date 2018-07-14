@@ -15,10 +15,10 @@ render () {
     <div className="modal-dialog" role="document">
       <div className="modal-content">
         <div className="modal-header">
-          <h3 className="modal-title">Good Work!</h3>
           <button type="button" className="close" onClick={this.props.onClose} data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
+          <h3 className="modal-title">Good Work, {this.props.userEmail} </h3>
         </div>
         <div className="modal-body">
           <h4>You just completed {this.props.workoutTitle} ! <br />
