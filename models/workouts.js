@@ -1,21 +1,21 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const workoutSchema = new Schema({
-	name: {
+const workoutsSchema = new Schema({
+  name: {
     type: String,
     required: true
   },
   img: {
     type: String,
-    required: true
+    required: false
   },
   description: {
-    type: String,
+    type: Array,
     required: true
   },
 });
 
-const Workout = mongoose.model("Workout", workoutSchema);
+const Workouts = mongoose.model("Workouts", workoutsSchema);
 
-module.exports = Workout;
+module.exports = Workouts;

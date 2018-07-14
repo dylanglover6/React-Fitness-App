@@ -1,33 +1,58 @@
 import React from 'react';
+import firebase from 'firebase';
 import API from '../../utils/User/API';
 
-class Profile extends React.Component {
+ let email = ""
 
-  state = {
-    user: {}
-  };
+class ProfileInfo extends React.Component {  
 
-  componentDidMount() {
-    let email = "stephWins@stephWins.com"
-    API.getUserByEmail(email)
-    .then(console.log(email))
-    .then(res => console.log(res.data))
-    // .then(res => this.setState({ user: res.data }))
-    .catch(err => console.log(err));
+
+  state ={
+    user: '',
+    email: ''
   }
+ getEmail() { 
+   
+  const user = firebase.auth().currentUser;
+  if (user != null) {
+  user.providerData.forEach(function (profile) {
+    email = profile.email;
+    console.log(" Email: " + email);
+    
+  });
 
-  render() {
   
-    return(
-      <div>
-        <h1>UserName: {this.state.user.username}</h1>
-        <h1>DOB: {this.state.user.age}</h1>
-        <h1>Gender: {this.state.user.gender}</h1>
-        
-      </div>
+  
+  
+    API.getUserbyEmail(email)
+    .then(res => this.setState({ user: res.data }))
+    //.then(console.log(this.state.user))
+    //.then(console.log(this.state.email))
+    .catch(err => console.log(err));
+} 
+  }
+ 
+  componentDidMount(){
+    
+    this.getEmail()
+  }
+  
+  
+  render() {
+  console.log(this.state.user)  
+
+    return (
+    <div>
+  
+      Put profile info here.
+  
+  
+  </div>
+
     );
   }
-
 }
 
-export default Profile;
+export default ProfileInfo;
+
+

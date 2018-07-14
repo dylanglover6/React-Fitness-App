@@ -22,7 +22,7 @@ const HomePage = () =>
         
           <div className="home componentsStyle">
             <Link to={routes.VIEW_WORKOUTS}>View Workouts</Link>
-
+          
           </div>
         </Col>
       </Row>
