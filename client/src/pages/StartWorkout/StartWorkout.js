@@ -10,23 +10,26 @@ import WorkoutJumbotron from "../../components/WorkoutJumbotron";
 import firebase from 'firebase';                                                 
 import CompletedModal from "../../components/CompletedModal/CompletedModal";
 import Navigation from "../../components/Navigation"
+import "./StartWorkout.css"
 
 class StartWorkout extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      timerColor: "#3e98c7",
-      yourPercentage: 0,
-      timeLeft: 60,
-      timesRan: 0,
-      pauseBoolean: false,
-      buttonText: "Pause",
-      workout: {},
-      exerciseCounter: 0,
-      instructionsText: "Let's Do:",
-      isOpen: false,
-      id: props.id
-    };
+      this.state = {
+        timerColor: "#3e98c7",
+        yourPercentage: 0,
+        timeLeft: 60,
+        timesRan: 0,
+        pauseBoolean: false,
+        buttonText: "Pause",
+        workout: {},
+        exerciseCounter: 0,
+        instructionsText: "Let's Do:",
+        isOpen: false,
+        id: ""
+      };
+    
+    this.handleInputChange = this.handleInputChange.bind(this)
   }
 
   handleInputChange = event => {
@@ -47,7 +50,6 @@ class StartWorkout extends Component {
       .catch (err => console.log(err));
   }
     
-  
   //runs when each timer finishes
   timerComplete() {
     
@@ -94,12 +96,10 @@ class StartWorkout extends Component {
           instructionsText: instructionsText
         })
     }
-    console.log(this.state.isOpen)
   }
 
 
   toggleModal = () => {
-    console.log(this.state.isOpen)
     this.setState({
       isOpen: !this.state.isOpen
       
@@ -130,42 +130,49 @@ class StartWorkout extends Component {
       workoutText = this.state.workout[0].description[this.state.exerciseCounter]
       workoutTitle = this.state.workout[0].name
     }
+    let containerStyle = {
+      backgroundImage: 'url("https://images.unsplash.com/photo-1517344687790-7338f238f7f5?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=60cbef02eb928db2f4ba8474f972cdb8&auto=format&fit=crop&w=700&q=60")'
+    }
     return (
-      <Container fluid>
-      <Navigation />
-        <WorkoutJumbotron
-         workoutTitle={workoutTitle}
-         workoutText={workoutText}
-         instructionsText={this.state.instructionsText}
-        />
-        <CompletedModal
-          userEmail= {<CurrentUser />}
+      <div className="background-class">
+        <Container fluid style={containerStyle}>
+        <Navigation />
+          <WorkoutJumbotron
           workoutTitle={workoutTitle}
-          show={this.state.isOpen}
-          onClose={this.toggleModal}
-        />
-        <Row>
-        <Col size="md-2" />
-          <Col size="md-5">
-            <ProgressBar 
-              yourPercentage = {this.state.yourPercentage}
-              buttonText = {this.state.buttonText}
-              handleClick = {this.handleClick}
-              timerComplete = {this.timerComplete.bind(this)}
-            />
-          </Col>
-          <Col size="md-4">  
-            <Timer 
-              timeLeft = {this.state.timeLeft}
-              timerColor = {this.state.timerColor}
-              timerComplete = {this.timerComplete.bind(this)}   
-              timesRan = {this.state.timesRan}  
-              pauseBoolean = {this.state.pauseBoolean}
-            />
-          </Col> 
-          <Col size="md-1" />
-        </Row>   
-      </Container>
+          workoutText={workoutText}
+          instructionsText={this.state.instructionsText}
+          />
+          <CompletedModal
+            userEmail= {<CurrentUser />}
+            workoutTitle={workoutTitle}
+            show={this.state.isOpen}
+            onClose={this.toggleModal}
+          />
+          <div className="timerDiv">
+            <Row>
+          <Col size="md-2" />
+            <Col size="md-5">
+              <ProgressBar  
+                yourPercentage = {this.state.yourPercentage}
+                buttonText = {this.state.buttonText}
+                handleClick = {this.handleClick}
+                timerComplete = {this.timerComplete.bind(this)}
+              />
+            </Col>
+            <Col size="md-4">  
+              <Timer 
+                timeLeft = {this.state.timeLeft}
+                timerColor = {this.state.timerColor}
+                timerComplete = {this.timerComplete.bind(this)}   
+                timesRan = {this.state.timesRan}  
+                pauseBoolean = {this.state.pauseBoolean}
+              />
+            </Col> 
+            <Col size="md-1" />
+            </Row>
+          </div>   
+        </Container>
+      </div>
     );
   }
 };

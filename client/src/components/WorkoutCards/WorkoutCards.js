@@ -9,12 +9,19 @@ const WorkoutCard = props => (
             <a onClick={() => props.selectWorkouts(props.workouts)} 
                 className={props.curScore === 0 ? "style_prevu_kit style_prevu_kit_ex" : "style_prevu_kit"}
             >
-                <img alt={props.workouts} src={props.image} />
+                <img alt={props.workouts} src={props.image} id={props.id} />
             </a>
+        </div>
       </div>
-    </div>
+        <Link 
+            to= {{
+                pathname: "/start-workout",
+                state: {id: props.id}
+        }}
+        >   
+                <span className="btn btn-danger">Start This Workout</span>
+        </Link>   
     </div>
 );
 
 export default WorkoutCard;
-
