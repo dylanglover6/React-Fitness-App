@@ -2,20 +2,22 @@ import React, { Component } from "react";
 //import Jumbotron from "../../components/Jumbotron";
 import { Col, Row, Container } from "../../components/Grid";
 //import WorkoutCards from '../../components/WorkoutCards'
-import cats from '../../WorkOuts.json'
+import work_outs from '../../WorkOuts.json'
 import Wrapper from '../../components/Wrapper'
 import Navpills from '../../components/Navpills'
 //import Title from '../../components/Title'
 import WorkoutCard from '../../components/WorkoutCards'
+import Navigation from '../../components/Navigation'
+
 
 
 class ViewWorkouts extends Component {
   state = {
-      message: "To select a workout, click an image.",
+      message: "To select a workout, click an image. ",
       topScore: 0,
       curScore: 0,
-      cats: cats,
-      unselectedCats: cats
+      cats: work_outs,
+      unselectedCats: work_outs
       
   }
 
@@ -30,53 +32,71 @@ class ViewWorkouts extends Component {
  //         [array[i], array[j]] = [array[j], array[i]];
  //     }
  // }
+  
+  
 
-  selectHotpants = workouts => {
-      const findCat = this.state.unselectedCats.find(item => item.workouts === workouts);
 
-      if(findCat === undefined) {
+  selectWorkouts = workouts => {
+      const findWorkout = this.state.unselectedCats.find(item => item.workouts === workouts);
+     
+ 
+
+      if(findWorkout === undefined) {
           // failure to select a new workout
           this.setState({ 
               message: "You Already Added That Workout",
              
-              cats: cats,
-              unselectedCats: cats
+              cats: work_outs,
+              unselectedCats: work_outs
           });
       }
       else {
           // success to select a new workout
-          const newCats = this.state.unselectedCats.filter(item => item.workouts !== workouts);
-          
+          const newWorkouts = this.state.unselectedCats.filter(item => item.workouts !== workouts);
+
           this.setState({ 
               message: "Workout Has Been Added To Your Faves",
               curScore: this.state.curScore + 1,
-              cats: cats,
-              unselectedCats: newCats
+              cats: work_outs,
+              unselectedCats: newWorkouts
           });
-
           console.log(workouts);
+          console.log(findWorkout);
+
+
       }
+
+      
 
       //this.shuffleArray(cats);
   };
+
+
 
 //class ViewWorkouts extends Component {
   
   render() {
     return (
+        
+
+
+
       <Container fluid>
         <Row>
           <Col size="md-12">
 
-           <Navpills
+            <Navigation />
+         
+           
+            <Navpills
                     message={this.state.message}
                     curScore={this.state.curScore}
-                    topScore={this.state.topScore}
+                    //topScore={this.state.topScore}
                 />
-                
               
           
                 <Wrapper>
+               
                
                 
                 {
@@ -84,8 +104,8 @@ class ViewWorkouts extends Component {
                         <WorkoutCard
                             workouts={cat.workouts}
                             image={cat.image}
+                            selectWorkouts={this.selectWorkouts} 
                             id={cat.id}
-                            selectHotpants={this.selectHotpants} 
                             curScore={this.state.curScore}
                         />
                     ))

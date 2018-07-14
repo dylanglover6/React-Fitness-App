@@ -16,8 +16,10 @@ const Navpills = props => (
                         "desc-normal"}
             >
                 {props.message}
+
             </li>
-            <li>Workouts Added: <span style={{color: "yellow"}}>{props.curScore}</span> | Total Workouts: {props.topScore}</li>
+
+             <div> <br /> <li> Workouts Added: <span style={{color: "yellow"}}>{props.curScore}</span> </li> </div> 
         </ul>
     </div>
 );
