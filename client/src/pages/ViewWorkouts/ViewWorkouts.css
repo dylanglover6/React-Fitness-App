@@ -2,5 +2,6 @@
     background-image: url("https://upload.wikimedia.org/wikipedia/commons/c/cd/231000_-_Swimming_Daniel_Bell_reflections_action_-_3b_-_2000_Sydney_event_photo.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
+    background-size: 100%;
     /*background-position: center;*/
  }
