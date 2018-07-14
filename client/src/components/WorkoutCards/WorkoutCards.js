@@ -16,7 +16,7 @@ const WorkoutCard = props => (
         <Link 
             to= {{
                 pathname: "/start-workout",
-                query: {id: props.id}
+                state: {id: props.id}
         }}
         >   
                 <span className="btn btn-danger">Start This Workout</span>

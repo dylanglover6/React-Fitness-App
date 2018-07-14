@@ -1,0 +1,9 @@
+.background-class {
+  background-image: url("../../assets/weights-background.jpg");
+  background-size: 100%;
+}
+
+.timerDiv {
+  background-color: #ffffffc2;
+  padding: 2%;
+}

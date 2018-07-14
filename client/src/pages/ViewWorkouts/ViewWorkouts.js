@@ -93,7 +93,7 @@ class ViewWorkouts extends Component {
                     curScore={this.state.curScore}
                     //topScore={this.state.topScore}
                 />
-              
+                
           
                 <Wrapper>
                
