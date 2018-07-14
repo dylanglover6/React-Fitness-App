@@ -5,7 +5,7 @@ import { Navbar, Nav, Button } from 'react-bootstrap';
 import NavWrap from './NavWrap';
 import './Navigation.css';
 import { auth } from '../../firebase';
-import SignOutButton from '../User/SignOut';
+import AuthUserContext from '../User/AuthUserContext';
 
 
 class Navigation extends React.Component {
@@ -22,6 +22,14 @@ class Navigation extends React.Component {
           <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse>
+        <Navbar.Text>
+            <AuthUserContext.Consumer>
+    {authUser =>
+        <h3>{authUser.email}</h3>
+    
+    }
+  </AuthUserContext.Consumer>
+        </Navbar.Text>
           <Nav pullRight>
             <NavWrap>
               <ul className="ulStyles">
