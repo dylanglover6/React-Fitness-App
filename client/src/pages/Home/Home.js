@@ -2,9 +2,7 @@ import React from 'react';
 import withAuthorization from '../../components/User/withAuthorization';
 import { Col, Row, Container } from "../../components/Grid";
 import './Home.css';
-import Jumbotron from '../../components/Jumbotron';
-import ViewWorkouts from '../ViewWorkouts';
-import { Link, withRouter, } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import * as routes from '../../constants/routes';
 import Navigation from '../../components/Navigation';
 // import FavoritesList from '../../components/UserComponents/FavoritesList';
@@ -21,21 +19,23 @@ const HomePage = () =>
 
       <Row>
         <Col size="sm-12">
-          <div className="home">
+        
+          <div className="home componentsStyle">
             <Link to={routes.VIEW_WORKOUTS}>View Workouts</Link>
+
           </div>
         </Col>
       </Row>
 
       <Row>
         <Col size="sm-6" >
-          <div className="home">
+          <div className="home componentsStyle">
               <Link to={routes.FAVORITE_WORKOUTS}>Favorite/Recent Workouts</Link>        
               {/* <FavoritesList /> */}
           </div>
         </Col>
         <Col size="sm-6" >
-          <div className="home">
+          <div className="home componentsStyle">
               <Link to={routes.USER_HISTORY}>User Stats/ Workout History</Link>
               {/* <WeekHistory />
               <FullWorkoutHistory /> */}
@@ -45,7 +45,7 @@ const HomePage = () =>
 
       <Row>
         <Col size="sm-12" >
-          <div className="home">
+          <div className="home componentsStyle">
               <Link to={routes.USER_PROFILE}>Profile Info Here</Link>
           </div>      
         </Col>

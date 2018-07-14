@@ -18,7 +18,7 @@ const PasswordForgetPage = () =>
                 <h4>Reset your password via email.</h4>
                 <PasswordForgetForm />
                 <p>
-                  Nevermind: 
+                  Nevermind 
                   {' '}
                   <Link to={routes.LANDING}>Sign In</Link>
                 </p>
