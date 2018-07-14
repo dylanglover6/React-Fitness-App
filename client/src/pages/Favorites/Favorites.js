@@ -74,6 +74,7 @@ class Favorites extends Component {
                             image={cat.image}
                             selectWorkouts={this.selectWorkouts} 
                             curScore={this.state.curScore}
+                            id={cat.id}
                         />
                     ))
                 }
