@@ -8,6 +8,7 @@ import Navpills from '../../components/Navpills'
 //import Title from '../../components/Title'
 import WorkoutCard from '../../components/WorkoutCards'
 import Navigation from '../../components/Navigation'
+import "./ViewWorkouts.css";
 
 
 
