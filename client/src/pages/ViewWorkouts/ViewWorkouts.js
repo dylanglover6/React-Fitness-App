@@ -75,14 +75,15 @@ class ViewWorkouts extends Component {
 
 
 //class ViewWorkouts extends Component {
+
+ 
   
   render() {
     return (
+        <div className="viewBackground">
         
-
-
-
       <Container fluid>
+
         <Row>
           <Col size="md-12">
 
@@ -118,6 +119,8 @@ class ViewWorkouts extends Component {
           </Col>
         </Row>
       </Container>
+
+      </div>
     );
   }
 }

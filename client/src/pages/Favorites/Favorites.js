@@ -5,7 +5,7 @@ import { Col, Row, Container } from "../../components/Grid";
 import Wrapper from '../../components/Wrapper'
 import Navigation from '../../components/Navigation'
 import work_outs from '../../WorkOuts.json'
-import WorkoutCard from '../../components/WorkoutCards'
+import WorkoutCards2 from '../../components/WorkoutCards2'
 
 class Favorites extends Component {
   state = {
@@ -69,7 +69,7 @@ class Favorites extends Component {
 
            {
                     this.state.cats.map(cat => (
-                        <WorkoutCard
+                        <WorkoutCards2
                             workouts={cat.workouts}
                             image={cat.image}
                             selectWorkouts={this.selectWorkouts} 
