@@ -19,7 +19,7 @@ const WorkoutCard = props => (
                 state: {id: props.id}
         }}
         >   
-                <span className="btn btn-danger">Start This Workout</span>
+                <span className="btn btn-danger" onClick={() => Window.X = props.id}>Start This Workout</span>
         </Link>   
     </div>
 );

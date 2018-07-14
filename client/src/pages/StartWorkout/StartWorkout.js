@@ -41,7 +41,7 @@ class StartWorkout extends Component {
   
 
   componentDidMount() {
-    API.getWorkout("5b4827613cf7cf2c8406fa04")
+    API.getWorkout(Window.X)
       .then(res => {
         this.setState({
           workout: res.data
