@@ -12,6 +12,10 @@
   font-weight: 400;
 }
 
+.linkStyles:active {
+  color: white;
+}
+
 .linkStyles:hover {
   color: white;
   text-decoration: none;
